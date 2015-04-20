@@ -1,7 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">WechKhassek</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+
     <string name="title_activity_tutorial">TutorialActivity</string>
+
+
+    <string name="RechercheBtn">Rechercher un médecin proche de vous  </string>
+
+    <string name="action_search">Search</string>
+
+
+    <string name="nav_item_home">Home</string>
+    <string name="nav_item_friends">Friends</string>
+    <string name="nav_item_notifications">Messages</string>
+
+    <string name="title_messages">Messages</string>
+    <string name="title_friends">Friends</string>
+    <string name="title_home">Home</string>
+    <string name="title_vols">Vols</string>
+    <string name="app_name">WechKhassek</string>
+    <string name="title_activity_splash">WechKhassek</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string-array name="specialiter_array">
+        <item>Généralist</item>
+        <item>Cardiolog</item>
+        <item>Dermatolog</item>
+        <item>Dentiste</item>
+        <item>Ophtalmolog</item>
+
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

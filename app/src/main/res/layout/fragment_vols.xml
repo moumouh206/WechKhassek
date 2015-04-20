@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mba2dna.airalgerie.activity.VolsFragment"
+    android:background="@color/grey">
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/tv_title_flashing_mode"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Choisissez une date" />
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_below="@id/tv_title_flashing_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="?android:attr/dividerHorizontal"
+        android:orientation="vertical"
+        android:showDividers="end|middle"
+        android:background="@color/windowBackground">
+
+        <LinearLayout
+            android:id="@+id/dateLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="?android:attr/dividerHorizontal"
+            android:dividerPadding="5dp"
+            android:orientation="horizontal"
+            android:showDividers="middle" >
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-light"
+                android:paddingLeft="25dp"
+                android:text="12-04-2015"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="25sp" />
+
+            <ImageButton
+                android:id="@+id/btnChangeDate"
+                style="@android:style/Widget.Holo.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_calendar_grey600_36dp"
+                android:tint="@color/colorPrimary" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/volsList"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/header"
+        android:layout_marginTop="15dp" />
+
+
+</RelativeLayout>
