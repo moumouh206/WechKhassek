@@ -13,12 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-
-        import com.mba2dna.wechkhassek.*;
-        import com.mba2dna.wechkhassek.constants.Constants;
-
-        import me.relex.circleindicator.CircleIndicator;
+import com.mba2dna.wechkhassek.*;
+import com.mba2dna.wechkhassek.constants.Constants;
+import me.relex.circleindicator.CircleIndicator;
 
 
 public class TutorialActivity extends FragmentActivity {
@@ -39,6 +36,7 @@ public class TutorialActivity extends FragmentActivity {
         mViewPager.setAdapter(mDemoCollectionPagerAdapter);
         CircleIndicator defaultIndicator = (CircleIndicator) findViewById(R.id.indicator_custom);
         defaultIndicator.setViewPager(mViewPager);
+
         Typeface tf = Typeface.createFromAsset(getAssets(),
                 Constants.fontBold);
         Typeface tl = Typeface.createFromAsset(getAssets(),

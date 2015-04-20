@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="PrimaryColor">#d71920</color>
+
     <color name="SeconderColor">#ffffff</color>
-    <color name="AccentColor">#d71920</color>
-    <color name="primaryColorDark">#1489a3</color>
-    <color name="primaryColorDarker">#114e5f</color>
-    <color name="accentColor">#ea484d</color>
-    <color name="accentColorPressed">#d24146</color>
     <color name="whiteColor">#ffffff</color>
     <color  name="whiteColorDark">#e6e6e6</color>
     <color  name="light_blue_500">#e6e6e6</color>

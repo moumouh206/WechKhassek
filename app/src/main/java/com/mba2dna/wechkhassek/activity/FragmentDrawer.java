@@ -51,8 +51,8 @@ public class FragmentDrawer extends Fragment {
 
     public static List<NavDrawerItem> getData() {
         List<NavDrawerItem> data = new ArrayList<>();
-        int[] icons = {R.drawable.ic_home_white_24dp, R.drawable.ic_airplane_white_24dp,R.drawable.ic_city_white_24dp, R.drawable.ic_bank_white_24dp, R.drawable.ic_drone_white_24dp, R.drawable.ic_weather_partlycloudy_white_24dp};
-        String[] titles = { "Accueil","Les vols de la journée","Les vols par ville", "Les vols par compagnie aérienne", "L’état des vols en temps réel", "Météo de la ville de destination"};
+        int[] icons = {R.drawable.ic_home_white_24dp, R.drawable.ic_magnify_white_24dp,R.drawable.ic_star_white_24dp, R.drawable.ic_calendar_white_24dp, R.drawable.ic_drone_white_24dp, R.drawable.ic_weather_partlycloudy_white_24dp};
+        String[] titles = { "Accueil","Rechercher un artisant","Mes Artisants Favories", "Mes rendez vous", "L’état des vols en temps réel", "Météo de la ville de destination"};
 
         // preparing navigation drawer items
         for (int i = 0; i < icons.length && i < titles.length; i++) {
