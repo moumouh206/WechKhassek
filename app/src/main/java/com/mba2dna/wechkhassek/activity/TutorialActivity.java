@@ -2,7 +2,6 @@ package com.mba2dna.wechkhassek.activity;
 
 
         import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -13,11 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.mba2dna.wechkhassek.*;
-import com.mba2dna.wechkhassek.constants.Constants;
-        import com.mba2dna.wechkhassek.util.UserFunctions;
 
-        import me.relex.circleindicator.CircleIndicator;
+import com.mba2dna.wechkhassek.R;
+import com.mba2dna.wechkhassek.constants.Constants;
+import com.mba2dna.wechkhassek.util.UserFunctions;
+
+import me.relex.circleindicator.CircleIndicator;
 
 
 public class TutorialActivity extends FragmentActivity {
@@ -39,12 +39,9 @@ public class TutorialActivity extends FragmentActivity {
         CircleIndicator defaultIndicator = (CircleIndicator) findViewById(R.id.indicator_custom);
         defaultIndicator.setViewPager(mViewPager);
 
-        Typeface tf = Typeface.createFromAsset(getAssets(),
-                Constants.fontBold);
-        Typeface tl = Typeface.createFromAsset(getAssets(),
-                Constants.fontLight);
+
         PassBtn = (TextView) findViewById(R.id.PassBtn);
-        PassBtn.setTypeface(tf);
+       // PassBtn.setTypeface(Constants.tf);
         PassBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,16 +119,13 @@ public class TutorialActivity extends FragmentActivity {
                                  ViewGroup container, Bundle savedInstanceState) {
             // The last two arguments ensure LayoutParams are inflated
             // properly.
-            Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
-                    Constants.fontBold);
-            Typeface tl = Typeface.createFromAsset(getActivity().getAssets(),
-                    Constants.fontLight);
+
             View rootView = inflater.inflate(
                     R.layout.fragment_tut1, container, false);
             Tl = (TextView) rootView.findViewById(R.id.Tl);
-            Tl.setTypeface(tf);
+            Tl.setTypeface(Constants.tf);
             Disc = (TextView) rootView.findViewById(R.id.Disc);
-            Disc.setTypeface(tl);
+            Disc.setTypeface(Constants.tl);
             return rootView;
         }
     }
@@ -146,15 +140,12 @@ public class TutorialActivity extends FragmentActivity {
             // properly.
             View rootView = inflater.inflate(
                     R.layout.fragment_tut2, container, false);
-            Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
-                    Constants.fontBold);
-            Typeface tl = Typeface.createFromAsset(getActivity().getAssets(),
-                    Constants.fontLight);
+
 
             Tl = (TextView) rootView.findViewById(R.id.Tl);
-            Tl.setTypeface(tf);
+            Tl.setTypeface(Constants.tf);
             Disc = (TextView) rootView.findViewById(R.id.Disc);
-            Disc.setTypeface(tl);
+            Disc.setTypeface(Constants.tl);
             return rootView;
         }
     }
@@ -166,16 +157,13 @@ public class TutorialActivity extends FragmentActivity {
                                  ViewGroup container, Bundle savedInstanceState) {
             // The last two arguments ensure LayoutParams are inflated
             // properly.
-            Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
-                    Constants.fontBold);
-            Typeface tl = Typeface.createFromAsset(getActivity().getAssets(),
-                    Constants.fontLight);
+
             View rootView = inflater.inflate(
                     R.layout.fragment_tut3, container, false);
             Tl = (TextView) rootView.findViewById(R.id.Tl);
-            Tl.setTypeface(tf);
+            Tl.setTypeface(Constants.tf);
             Disc = (TextView) rootView.findViewById(R.id.Disc);
-            Disc.setTypeface(tl);
+            Disc.setTypeface(Constants.tl);
             return rootView;
         }
     }

@@ -1,13 +1,14 @@
 package com.mba2dna.wechkhassek.app;
 /*Create AppController.java under app package. This class is a singleton class which initializes core objects of volley library*/
-import com.mba2dna.wechkhassek.util.LruBitmapCache;
+
 import android.app.Application;
 import android.text.TextUtils;
- 
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.mba2dna.wechkhassek.util.LruBitmapCache;
  
 public class AppController extends Application {
  
@@ -17,13 +18,15 @@ public class AppController extends Application {
     private ImageLoader mImageLoader;
  
     private static AppController mInstance;
+
  
     @Override
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+
     }
- 
+
     public static synchronized AppController getInstance() {
         return mInstance;
     }

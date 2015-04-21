@@ -1,5 +1,10 @@
 package com.mba2dna.wechkhassek.constants;
 
+import android.content.Context;
+import android.graphics.Typeface;
+
+import com.mba2dna.wechkhassek.activity.MainActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -7,9 +12,17 @@ import java.util.Locale;
 /**
  * Created by MBA2DNA on 07/02/2015.
  */
-public class Constants {
+public class Constants  {
+
     public static String fontBold = "fonts/NexaBold.ttf";
     public static String  fontLight = "fonts/NexaLight.ttf";
+   static Context c = MainActivity.ma.getApplicationContext();
+   public static Typeface tf = Typeface.createFromAsset(c.getAssets(),
+            fontBold);
+   public static Typeface tl = Typeface.createFromAsset(c.getAssets(),
+            fontLight);
+    public static final String URL = "http://depanini.16mb.com/mobile/json.php";//"http://mobile.dirannonce.com/json.php";
+    public static String API_KEY ="AIzaSyCW-GQfW80cH4V2zufLBVJhwzmABLQYqwU";
 public static String RandomDateTime(){
     SimpleDateFormat dfDateTime  = new SimpleDateFormat("hh:mm", Locale.getDefault());
     int year = randBetween(1900, 2013);// Here you can set Range of years you need
