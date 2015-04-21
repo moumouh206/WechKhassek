@@ -13,4 +13,21 @@
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#f1c500</color>
     <color name="grey">#eeeeee</color>
+    <color name="background_window">#FFE5E5E5</color>
+    <color name="yallow_l">#f1b35e</color>
+    <color name="yallow_d">#ce8244</color>
+    <color name="red_l">#dc574e</color>
+    <color name="red_d">#b93d3b</color>
+    <color name="genre">#666666</color>
+    <color name="year">#888888</color>
+    <color name="list_divider">#d9d9d9</color>
+    <color name="list_row_start_color">#ffffff</color>
+    <color name="list_row_end_color">#ffffff</color>
+    <color name="list_row_hover_start_color">#ebeef0</color>
+    <color name="list_row_hover_end_color">#ebeef0</color>
+
+    <item name="transparent" type="color">#00FFFFFF</item>
+    <item name="grey2" type="color">#555555</item>
+    <item name="green" type="color">#4499CC00</item>
+    <item name="darkgreen" type="color">#FF669900</item>
 </resources>

@@ -15,14 +15,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.mba2dna.wechkhassek.*;
 import com.mba2dna.wechkhassek.constants.Constants;
-import me.relex.circleindicator.CircleIndicator;
+        import com.mba2dna.wechkhassek.util.UserFunctions;
+
+        import me.relex.circleindicator.CircleIndicator;
 
 
 public class TutorialActivity extends FragmentActivity {
     DemoCollectionPagerAdapter mDemoCollectionPagerAdapter;
     ViewPager mViewPager;
     TextView PassBtn;
-
+    UserFunctions userFunctions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +48,21 @@ public class TutorialActivity extends FragmentActivity {
         PassBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
-                Intent myIntent = new Intent(TutorialActivity.this,
-                        MainActivity.class);
-                myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(myIntent);
+                userFunctions = new UserFunctions();
+                if (userFunctions.isUserLoggedIn(getApplicationContext())) {
+                    finish();
+                    Intent myIntent = new Intent(TutorialActivity.this,
+                            MainActivity.class);
+                    myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(myIntent);
+                }else{
+                    finish();
+                    Intent myIntent = new Intent(TutorialActivity.this,
+                            LoginActivity.class);
+                    myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(myIntent);
+                }
+
             }
         });
     }

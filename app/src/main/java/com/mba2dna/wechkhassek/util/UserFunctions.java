@@ -1,9 +1,10 @@
-package com.mba2dna.depannini.util;
+package com.mba2dna.wechkhassek.util;
 
 import android.content.Context;
 
-import com.mba2dna.depannini.LoginActivity;
- 
+import com.mba2dna.wechkhassek.activity.LoginActivity;
+
+
 public class UserFunctions {
 	private static final String TAG = LoginActivity.class.getSimpleName();
    // private JSONParser jsonParser;
