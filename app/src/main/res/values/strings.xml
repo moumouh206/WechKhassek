@@ -25,16 +25,203 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-    <string-array name="specialiter_array">
-        <item>Généralist</item>
-        <item>Cardiolog</item>
-        <item>Dermatolog</item>
-        <item>Dentiste</item>
-        <item>Ophtalmolog</item>
 
-    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_login">LoginActivity</string>
+
+
+
+    <string name="action_contact">Contacter</string>
+    <string name="title_activity_fragment_view1">FragmentView1</string>
+
+
+    <string name="title_activity_offre">OffreActivity</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="Bienvenue">Bienvenue Artisan et Utilisateur</string>
+    <string name="explication">Notre Application Dépanini est distiné au artisans qui cherche de l\'emploi ou au personne qui ont des besoin des artisans</string>
+    <string name="artisan_a_recherche_d_emploi">Artisant à la recherche d\'emploi</string>
+    <string name="une_personne_cherche_un_artisan">Une personne cherche un artisan</string>
+    <string name="vous_pouvez_filtrer_votre_recherche_ici">Vous pouvez filtrer votre recherche ici</string>
+    <string name="section_de_recherche_des_services">Section de recherche des services</string>
+    <string name="sp_cialit_">Spécialité</string>
+
+    <string-array name="specialiter_array">
+
+        <!--
+        <item>Plombier</item>
+        <item>Maçon</item>
+        <item>éléctiricien</item>
+        <item>Paintre</item>
+        <item>Platrier</item>
+        <item>Minuisier</item>
+        <item>Fernier</item>
+        <item>Vitrier</item>
+        <item>Chaud et climatisation</item>
+        <item>Potrier</item>
+        <item>Coordonier</item>
+        <item>Charpentier</item>
+        <item>Jardinier</item>
+        <item>Mecanicien</item>
+
+
+
+        -->
+        <item>alarme (installateur)</item>
+        <item>architecte</item>
+        <item>carreleur</item>
+        <item>charpentier</item>
+        <item>chauffagiste</item>
+        <item>climatisation (installateur)</item>
+        <item>constructeur de maison</item>
+        <item>cuisiniste</item>
+        <item>Decorateur</item>
+        <item>electricien</item>
+        <item>entreprise generale de batiment</item>
+        <item>escalieteur</item>
+        <item>fenetres (installateur)</item>
+        <item>Fontaine a eau (installateur)</item>
+        <item>forgeron /ferronnier</item>
+        <item>jardinier</item>
+        <item>maçon </item>
+        <item>maitre d\'oeuvre</item>
+        <item>mecanecien</item>
+        <item>menuisier</item>
+        <item>miroitier/vitrier</item>
+        <item>Moquettiste</item>
+        <item>pientre</item>
+        <item>piscines (insatallateur)</item>
+        <item>plaquiste</item>
+        <item>platier</item>
+        <item>plombier</item>
+        <item>portes,fenetres(installateur)</item>
+        <item>ravaleur de façade</item>
+        <item>salle de bains (installateur)</item>
+        <item>serrurier</item>
+        <item>store (installateur)</item>
+        <item>Vérandas (insattaleur)</item>
+    </string-array>
+    <string-array name="willaya_array">
+        <item>Adrar</item>
+        <item>Chlef</item>
+        <item>Laghouat</item>
+        <item>Oum El Bouaghi</item>
+        <item>Batna</item>
+        <item>Béjaïa</item>
+        <item>Biskra</item>
+        <item>Béchar</item>
+        <item>Blida</item>
+        <item>Bouira</item>
+        <item>Tamanrasset</item>
+        <item>Tébessa</item>
+        <item>Tlemcen</item>
+        <item>Tiaret</item>
+        <item>Tizi Ouzou</item>
+        <item>Alger</item>
+        <item>Djelfa</item>
+        <item>Jijel</item>
+        <item>Sétif</item>
+        <item>Saïda</item>
+        <item>Skikda</item>
+        <item>Sidi Bel Abbès</item>
+        <item>Annaba</item>
+        <item>Guelma</item>
+        <item>Constantine</item>
+        <item>Médéa</item>
+        <item>Mostaganem</item>
+        <item>M\'Sila</item>
+        <item>Mascara</item>
+        <item>Ouargla</item>
+        <item>Oran</item>
+        <item>El Bayadh</item>
+        <item>Illizi</item>
+        <item>Bordj Bou Arreridj</item>
+        <item>Boumerdès</item>
+        <item>El Tarf</item>
+        <item>Tindouf</item>
+        <item>Tissemsilt</item>
+        <item>El Oued</item>
+        <item>Khenchela</item>
+        <item>Souk Ahras</item>
+        <item>Tipaza</item>
+        <item>Mila</item>
+        <item>Aïn Defla</item>
+        <item>Naâma</item>
+        <item>Témouchent</item>
+        <item>Ghardaïa</item>
+        <item>Relizane</item>
+    </string-array>
+
+    <string name="title_activity_inscription">InscriptionActivity</string>
+    <string name="inscription_d_panini_gratuitement">Inscription artisan Gratuite</string>
+    <string name="inscrivez_vous_maintenant">inscrivez vous maintenant</string>
+    <string name="vous_ete_un_artisan_et_vous_cherchez_un_emploi_inscrivez_vous_maintenant_">"Vous ete un artisan et vous cherchez un emploi, inscrivez vous maintenant "</string>
+    <string name="loginBtnTxt">Connectez-Vous</string>
+    <string name="enregistrerTxt">Enregistrer Vous</string>
+    <string name="EmailHint">Address éléctronique</string>
+    <string name="PassHint">Mot de passe</string>
+    <string name="title_activity_signup">Enregistrer</string>
+    <string name="usernamhint">Nom d\'utilisateur</string>
+    <string name="RePassHint">Retaper le mot de passe</string>
+    <string name="SignUpBtnTxt">Enregistrez-vous</string>
+    <string name="title_activity_login">Connexion</string>
+    <string name="title_activity_offres">Offres</string>
+    <string name="SearchItemTxt">Search</string>
+    <string name="PostItemTxt">Post</string>
+    <string name="LogOutTxt">Déconnecter</string>
+    <string name="AddUser">Connecter</string>
+    <string name="searchTxt">Recherche une annonce ici ...</string>
+    <string name="LogoDisct">logoTxt</string>
+    <string name="recherche_encours">Recherche en cours ...</string>
+    <string name="title_activity_detail">Toutes les annones</string>
+    <string name="prixlibeli">Prix</string>
+    <string name="DetailTitre">Détails</string>
+    <string name="Description">Description</string>
+    <string name="Internet">Connexion internet requise</string>
+    <string name="retry">Resseyer</string>
+    <string name="loading_more_data">Loading more data...</string>
+    <string name="title_annonce_list">Annonces</string>
+    <string name="title_annonce_detail">Annonce Detail</string>
+    <string name="deconnectez_vous">Deconnectez-vous</string>
+    <string name="search">Search</string>
+    <string name="Dipaninilabel">Dipanini Mobile ©</string>
+    <string name="ville">Ville</string>
+    <string name="type_d_annonce">Type d\'annonce</string>
+    <string name="marque_modele">Marque/Modèle</string>
+    <string name="annee">Année</string>
+    <string name="energie">Energie</string>
+    <string name="kilometrage">Kilométrage</string>
+    <string name="surface">Surface</string>
+    <string name="nbre_de_pieces">Nbre de pièces</string>
+    <string name="telephone">Téléphone</string>
+    <string name="fonction">Fonction</string>
+    <string name="type_de_contrat">Type de contrat</string>
+    <string name="niveau_de_formation">Niveau de formation</string>
+    <string name="niveau_d_experience">Niveau d\'expérience</string>
+    <string name="mobilite">Mobilité</string>
+    <string name="type_d_emploi">Type d\'emploi</string>
+    <string name="lancer_votre_recherche">Lancer votre recherche</string>
+    <string name="prenom">Prénom</string>
+    <string name="willaya">Willaya</string>
+    <string name="_213_000_000_000">(+213) 000 000 000</string>
+    <string name="nom">Nom</string>
+    <string name="title_activity_artisan_list_tab">ArtisanListTab</string>
+    <string name="vous_ete_a_la_recherche_d_un_artisan_">Vous ete a la recherche d\'un artisan?</string>
+    <string name="ajout_d_offre_d_emploi">Ajout d\'offre d\'emploi</string>
+    <string name="ajouter_maintemant">Ajouter maintemant</string>
+    <string name="titre_de_l_offre">Titre de l\'offre</string>
+    <string name="rechercher_des_artisan_maintenant">Rechercher des artisan maintenant</string>
+    <string name="title_activity_agenda">Agenda</string>
+    <string name="la_liste_est_vide_">La liste est vide !</string>
+    <string name="addOffre">Ajouter un offre</string>
+    <string name="recherche_un_offre_d_emploi">Recherche un offre d\'emploi</string>
+    <string name="recherche_emploi">Recherche d\'offre d\'emploi</string>
+    <string name="title_activity_detail_artisan">DetailArtisanActivity</string>
+    <string name="information_rapide">Information rapide</string>
+    <string name="appeler_cette_artisan">Appeler cette artisan</string>
+    <string name="merci_de_mentionner_les_jours_de_votre_disponibilit_">"Merci de mentionner les jours de votre disponibilité "</string>
+    <string name="enregistrer_les_dates_de_disponibilit_">Enregistrer les dates de disponibilité</string>
+    <string name="ou">Ou</string>
+    <string name="votre_addresse_ici_">"Votre Addresse ici "</string>
+    <string name="facebook_app_id">1419836901640961</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.mba2dna.wechkhassek.activity;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -7,9 +8,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mba2dna.wechkhassek.R;
+import com.rey.material.widget.Button;
+import com.rey.material.widget.EditText;
+import com.rey.material.widget.TextView;
 
 public class LoginActivity extends ActionBarActivity {
-    private static String TAG = LoginActivity.class.getSimpleName();
+    private static final String TAG = LoginActivity.class.getSimpleName();
+    private Button LoginBtn;
+    private EditText UsernameTxt, PasswordTxt;
+    private ProgressDialog pDialog;
+    private MainFragment mainFragment;
+    private TextView SignUpBtn;
 
     private Toolbar mToolbar;
     @Override

@@ -1,6 +1,8 @@
 package com.mba2dna.wechkhassek.constants;
 
+import android.app.Application;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.Typeface;
 
 import com.mba2dna.wechkhassek.activity.MainActivity;
@@ -16,13 +18,11 @@ public class Constants  {
 
     public static String fontBold = "fonts/NexaBold.ttf";
     public static String  fontLight = "fonts/NexaLight.ttf";
-   static Context c = MainActivity.ma.getApplicationContext();
-   public static Typeface tf = Typeface.createFromAsset(c.getAssets(),
-            fontBold);
-   public static Typeface tl = Typeface.createFromAsset(c.getAssets(),
-            fontLight);
+
     public static final String URL = "http://depanini.16mb.com/mobile/json.php";//"http://mobile.dirannonce.com/json.php";
     public static String API_KEY ="AIzaSyCW-GQfW80cH4V2zufLBVJhwzmABLQYqwU";
+
+
 public static String RandomDateTime(){
     SimpleDateFormat dfDateTime  = new SimpleDateFormat("hh:mm", Locale.getDefault());
     int year = randBetween(1900, 2013);// Here you can set Range of years you need
@@ -32,10 +32,7 @@ public static String RandomDateTime(){
     int sec = randBetween(0, 59);
     GregorianCalendar gc = new GregorianCalendar(year, month, 1);
     int day = randBetween(1, gc.getActualMaximum(gc.DAY_OF_MONTH));
-
     gc.set(year, month, day, hour, min,sec);
-
-
     return dfDateTime.format(gc.getTime());
 }
     public static int randBetween(int start, int end) {

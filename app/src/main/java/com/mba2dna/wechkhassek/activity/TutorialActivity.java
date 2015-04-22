@@ -2,7 +2,8 @@ package com.mba2dna.wechkhassek.activity;
 
 
         import android.content.Intent;
-import android.os.Bundle;
+        import android.graphics.Typeface;
+        import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -25,6 +26,7 @@ public class TutorialActivity extends FragmentActivity {
     ViewPager mViewPager;
     TextView PassBtn;
     UserFunctions userFunctions;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +40,13 @@ public class TutorialActivity extends FragmentActivity {
         mViewPager.setAdapter(mDemoCollectionPagerAdapter);
         CircleIndicator defaultIndicator = (CircleIndicator) findViewById(R.id.indicator_custom);
         defaultIndicator.setViewPager(mViewPager);
-
+        Typeface tf = Typeface.createFromAsset(getAssets(),
+                Constants.fontBold);
+        Typeface tl = Typeface.createFromAsset(getAssets(),
+                Constants.fontLight);
 
         PassBtn = (TextView) findViewById(R.id.PassBtn);
-       // PassBtn.setTypeface(Constants.tf);
+        PassBtn.setTypeface(tf);
         PassBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,10 +127,14 @@ public class TutorialActivity extends FragmentActivity {
 
             View rootView = inflater.inflate(
                     R.layout.fragment_tut1, container, false);
+            Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
+                    Constants.fontBold);
+            Typeface tl = Typeface.createFromAsset(getActivity().getAssets(),
+                    Constants.fontLight);
             Tl = (TextView) rootView.findViewById(R.id.Tl);
-            Tl.setTypeface(Constants.tf);
+            Tl.setTypeface(tf);
             Disc = (TextView) rootView.findViewById(R.id.Disc);
-            Disc.setTypeface(Constants.tl);
+            Disc.setTypeface(tl);
             return rootView;
         }
     }
@@ -140,12 +149,15 @@ public class TutorialActivity extends FragmentActivity {
             // properly.
             View rootView = inflater.inflate(
                     R.layout.fragment_tut2, container, false);
-
+            Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
+                    Constants.fontBold);
+            Typeface tl = Typeface.createFromAsset(getActivity().getAssets(),
+                    Constants.fontLight);
 
             Tl = (TextView) rootView.findViewById(R.id.Tl);
-            Tl.setTypeface(Constants.tf);
+            Tl.setTypeface(tf);
             Disc = (TextView) rootView.findViewById(R.id.Disc);
-            Disc.setTypeface(Constants.tl);
+            Disc.setTypeface(tl);
             return rootView;
         }
     }
@@ -160,10 +172,14 @@ public class TutorialActivity extends FragmentActivity {
 
             View rootView = inflater.inflate(
                     R.layout.fragment_tut3, container, false);
+            Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
+                    Constants.fontBold);
+            Typeface tl = Typeface.createFromAsset(getActivity().getAssets(),
+                    Constants.fontLight);
             Tl = (TextView) rootView.findViewById(R.id.Tl);
-            Tl.setTypeface(Constants.tf);
+            Tl.setTypeface(tf);
             Disc = (TextView) rootView.findViewById(R.id.Disc);
-            Disc.setTypeface(Constants.tl);
+            Disc.setTypeface(tl);
             return rootView;
         }
     }

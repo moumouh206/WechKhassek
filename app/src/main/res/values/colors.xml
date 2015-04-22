@@ -14,8 +14,8 @@
     <color name="colorAccent">#f1c500</color>
     <color name="grey">#eeeeee</color>
     <color name="background_window">#FFE5E5E5</color>
-    <color name="yallow_l">#f1b35e</color>
-    <color name="yallow_d">#ce8244</color>
+    <color name="yallow_l">#f1c500</color>
+    <color name="yallow_d">#f1b35e</color>
     <color name="red_l">#dc574e</color>
     <color name="red_d">#b93d3b</color>
     <color name="genre">#666666</color>

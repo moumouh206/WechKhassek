@@ -1,6 +1,7 @@
 package com.mba2dna.wechkhassek.activity;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +16,7 @@ import android.view.View;
 
 import com.mba2dna.wechkhassek.CompanyFragment;
 import com.mba2dna.wechkhassek.R;
+import com.mba2dna.wechkhassek.constants.Constants;
 
 
 public class MainActivity extends ActionBarActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -23,13 +25,13 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
-    public static MainActivity ma;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ma=this;
+
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
