@@ -17,7 +17,6 @@ public class LoginActivity extends ActionBarActivity {
     private Button LoginBtn;
     private EditText UsernameTxt, PasswordTxt;
     private ProgressDialog pDialog;
-    private MainFragment mainFragment;
     private TextView SignUpBtn;
 
     private Toolbar mToolbar;

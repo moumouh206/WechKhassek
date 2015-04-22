@@ -13,5 +13,5 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:scaleType="center"
-        android:src="@drawable/ic_text" />
+        android:src="@drawable/ic_logod" />
 </android.support.v7.widget.Toolbar>
