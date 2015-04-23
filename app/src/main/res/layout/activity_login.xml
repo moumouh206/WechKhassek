@@ -8,10 +8,7 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"  />
-
-
         <!-- LOGO -->
-
         <ImageView
             android:id="@+id/dirlogo"
             android:layout_below="@+id/toolbar"
@@ -21,14 +18,12 @@
             android:layout_marginTop="16dp"
             android:contentDescription="@string/hello_world"
             android:src="@drawable/ic_logo1" />
-
-
     <com.rey.material.widget.EditText
         style="@style/Material.Widget.EditText.Light"
         android:id="@+id/UsernameField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#33000000"
+        android:textColor="@color/colorPrimary"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
         android:inputType="textEmailAddress"
         android:layout_below="@id/dirlogo"
@@ -38,35 +33,42 @@
         app:et_labelTextColor="@color/grey2"
         app:et_dividerColor="@color/colorPrimary"
         app:et_inputId="@+id/textfield_et_label_input"
-        app:et_supportMode="none" />
+        app:et_supportMode="none"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"/>
     <com.rey.material.widget.EditText
         style="@style/Material.Widget.EditText.Light"
         android:id="@+id/PasswordField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#33000000"
+        android:textColor="@color/colorPrimary"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-        android:layout_alignLeft="@+id/UsernameField"
         android:layout_below="@+id/UsernameField"
         android:ems="10"
         android:hint="@string/PassHint"
         android:inputType="textPassword"
         app:et_dividerColor="@color/colorPrimary"
         app:et_inputId="@+id/textfield_et_label_input"
-        app:et_supportMode="none" />
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        app:et_supportMode="none"
+        android:layout_alignLeft="@+id/UsernameField"
+        android:layout_alignStart="@+id/UsernameField" />
 
     <com.rey.material.widget.Button
         style="@style/Material.Drawable.Ripple.Touch.MatchView"
         android:id="@+id/LoginBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/PasswordField"
         android:layout_below="@+id/PasswordField"
-        android:background="@drawable/yallowbtn_selector"
+        android:background="@color/colorAccent"
         android:minHeight="38dp"
         android:text="@string/loginBtnTxt"
-        android:textColor="@android:color/white"
-        app:rd_enable="true"/>
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        app:rd_enable="true"
+        android:layout_alignLeft="@+id/PasswordField"
+        android:layout_alignStart="@+id/PasswordField" />
 
 
         <TextView

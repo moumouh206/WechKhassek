@@ -1,6 +1,9 @@
 package com.mba2dna.wechkhassek.activity;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +20,7 @@ import android.view.View;
 import com.mba2dna.wechkhassek.CompanyFragment;
 import com.mba2dna.wechkhassek.R;
 import com.mba2dna.wechkhassek.constants.Constants;
+import com.mba2dna.wechkhassek.util.UserFunctions;
 
 
 public class MainActivity extends ActionBarActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -63,7 +67,28 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_logout) {
+            new AlertDialog.Builder(this)
+                    .setIcon(R.drawable.ic_launcher)
+                    .setTitle("Fermer la Session")
+                    .setMessage("Etes vous sure de vouloir fermer la session?")
+                    .setPositiveButton("Oui",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
+									UserFunctions userFunction = new UserFunctions();
+									userFunction
+											.logoutUser(getApplicationContext());
+									Intent login = new Intent(
+											getApplicationContext(),
+											LoginActivity.class);
+									login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+									startActivity(login);
+                                    finish();
+                                }
+
+                            }).setNegativeButton("Non", null).show();
             return true;
         }
 

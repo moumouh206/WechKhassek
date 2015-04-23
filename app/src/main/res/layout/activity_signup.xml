@@ -1,0 +1,84 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mba2dna.wechkhassek.activity.SignupActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"  />
+    <!-- LOGO -->
+
+    <ImageView
+        android:id="@+id/dirlogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/toolbar"
+        android:contentDescription="@string/LogoDisct"
+        android:src="@drawable/ic_logo1" />
+
+    <EditText
+        android:id="@+id/usernamefield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/dirlogo"
+        android:layout_below="@id/dirlogo"
+        android:ems="10"
+        android:hint="@string/usernamhint" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/EmailTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/usernamefield"
+        android:layout_below="@+id/usernamefield"
+        android:ems="10"
+        android:hint="@string/EmailHint"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/passTxt1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/EmailTxt"
+        android:layout_below="@+id/EmailTxt"
+        android:ems="10"
+        android:hint="@string/PassHint"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/passTxt2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/passTxt1"
+        android:layout_below="@+id/passTxt1"
+        android:ems="10"
+        android:hint="@string/RePassHint"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/SignUpBtn"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/passTxt2"
+        android:layout_below="@+id/passTxt2"
+        android:background="@drawable/yallowbtn_selector"
+        android:minHeight="38dp"
+        android:text="@string/SignUpBtnTxt"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/Dinaninielabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/Dipaninilabel"
+        android:textSize="12sp" />
+
+</RelativeLayout>
