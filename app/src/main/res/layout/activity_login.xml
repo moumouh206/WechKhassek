@@ -16,8 +16,15 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:contentDescription="@string/hello_world"
             android:src="@drawable/ic_logo1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dirlogo"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
     <com.rey.material.widget.EditText
         style="@style/Material.Widget.EditText.Light"
         android:id="@+id/UsernameField"
@@ -25,17 +32,14 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimary"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+        android:hint="@string/EmailHint"
         android:inputType="textEmailAddress"
-        android:layout_below="@id/dirlogo"
         android:ems="10"
-        android:layout_alignLeft="@id/dirlogo"
-        android:hint="Adresse électronique"
         app:et_labelTextColor="@color/grey2"
         app:et_dividerColor="@color/colorPrimary"
         app:et_inputId="@+id/textfield_et_label_input"
         app:et_supportMode="none"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+/>
     <com.rey.material.widget.EditText
         style="@style/Material.Widget.EditText.Light"
         android:id="@+id/PasswordField"
@@ -43,49 +47,35 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimary"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-        android:layout_below="@+id/UsernameField"
         android:ems="10"
         android:hint="@string/PassHint"
         android:inputType="textPassword"
         app:et_dividerColor="@color/colorPrimary"
         app:et_inputId="@+id/textfield_et_label_input"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
         app:et_supportMode="none"
-        android:layout_alignLeft="@+id/UsernameField"
-        android:layout_alignStart="@+id/UsernameField" />
+ />
 
     <com.rey.material.widget.Button
         style="@style/Material.Drawable.Ripple.Touch.MatchView"
         android:id="@+id/LoginBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/PasswordField"
+
         android:background="@color/colorAccent"
         android:minHeight="38dp"
         android:text="@string/loginBtnTxt"
         android:textColor="@color/colorPrimary"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
         app:rd_enable="true"
-        android:layout_alignLeft="@+id/PasswordField"
-        android:layout_alignStart="@+id/PasswordField" />
+ />
 
 
-        <TextView
-            android:id="@+id/Dinaninielabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:text="@string/Dipaninilabel"
-            android:textSize="12sp" />
+
 
         <TextView
             android:id="@+id/ou"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/LoginBtn"
-            android:layout_centerHorizontal="true"
+
             android:layout_marginTop="5dp"
             android:gravity="center"
             android:text="@string/ou"
@@ -105,13 +95,18 @@
              android:layout_marginTop="5dp" />-->
         <TextView
             android:id="@+id/Signup"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:text="@string/enregistrerTxt"
-            android:layout_below="@+id/ou"
-            android:layout_alignRight="@+id/Dinaninielabel"
-            android:layout_alignEnd="@+id/Dinaninielabel" />
-
-
+            android:gravity="center" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/Dinaninielabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/Dipaninilabel"
+        android:textSize="12sp" />
 </RelativeLayout>

@@ -74,9 +74,9 @@ public class VolsAdapter extends RecyclerView.Adapter<VolsAdapter.VolsViewHolder
 
             Typeface tf = Typeface.createFromAsset(
                     v.getContext().getAssets(),
-                    Constants.fontLight);
+                    Constants.NexaLight);
             Typeface tl = Typeface.createFromAsset(v.getContext().getAssets(),
-                    Constants.fontBold);
+                    Constants.NexaBold);
             vEtat =  (TextView) v.findViewById(R.id.txtEtat);
             vEtat.setTypeface(tl);
             vEtat.setCompoundDrawablesWithIntrinsicBounds(

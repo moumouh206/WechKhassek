@@ -2,8 +2,8 @@ package com.mba2dna.wechkhassek.activity;
 
 
         import android.content.Intent;
-        import android.graphics.Typeface;
-        import android.os.Bundle;
+import android.graphics.Typeface;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -41,15 +41,19 @@ public class TutorialActivity extends FragmentActivity {
         CircleIndicator defaultIndicator = (CircleIndicator) findViewById(R.id.indicator_custom);
         defaultIndicator.setViewPager(mViewPager);
         Typeface tf = Typeface.createFromAsset(getAssets(),
-                Constants.fontBold);
+                Constants.NexaBold);
         Typeface tl = Typeface.createFromAsset(getAssets(),
-                Constants.fontLight);
+                Constants.NexaLight);
 
         PassBtn = (TextView) findViewById(R.id.PassBtn);
         PassBtn.setTypeface(tf);
         PassBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               /* SharedPreferences pref = getSharedPreferences("ActivityPREF", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor ed = pref.edit();
+                    ed.putBoolean("activity_executed", true);
+                    ed.commit();*/
                 userFunctions = new UserFunctions();
                 if (userFunctions.isUserLoggedIn(getApplicationContext())) {
                     finish();
@@ -128,9 +132,9 @@ public class TutorialActivity extends FragmentActivity {
             View rootView = inflater.inflate(
                     R.layout.fragment_tut1, container, false);
             Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
-                    Constants.fontBold);
+                    Constants.NexaBold);
             Typeface tl = Typeface.createFromAsset(getActivity().getAssets(),
-                    Constants.fontLight);
+                    Constants.NexaLight);
             Tl = (TextView) rootView.findViewById(R.id.Tl);
             Tl.setTypeface(tf);
             Disc = (TextView) rootView.findViewById(R.id.Disc);
@@ -150,9 +154,9 @@ public class TutorialActivity extends FragmentActivity {
             View rootView = inflater.inflate(
                     R.layout.fragment_tut2, container, false);
             Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
-                    Constants.fontBold);
+                    Constants.NexaBold);
             Typeface tl = Typeface.createFromAsset(getActivity().getAssets(),
-                    Constants.fontLight);
+                    Constants.NexaLight);
 
             Tl = (TextView) rootView.findViewById(R.id.Tl);
             Tl.setTypeface(tf);
@@ -173,9 +177,9 @@ public class TutorialActivity extends FragmentActivity {
             View rootView = inflater.inflate(
                     R.layout.fragment_tut3, container, false);
             Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
-                    Constants.fontBold);
+                    Constants.NexaBold);
             Typeface tl = Typeface.createFromAsset(getActivity().getAssets(),
-                    Constants.fontLight);
+                    Constants.NexaLight);
             Tl = (TextView) rootView.findViewById(R.id.Tl);
             Tl.setTypeface(tf);
             Disc = (TextView) rootView.findViewById(R.id.Disc);

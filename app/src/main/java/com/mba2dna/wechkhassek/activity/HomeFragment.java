@@ -31,9 +31,9 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         Typeface tl = Typeface.createFromAsset(getActivity().getAssets(),
-                Constants.fontLight);
+                Constants.NexaLight);
         Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
-                Constants.fontBold);
+                Constants.NexaBold);
         bienvenuelbl = (TextView) rootView.findViewById(R.id.bienvenuelbl);
         bienvenuelbl.setTypeface(tf);
         descritpionlbl = (TextView) rootView.findViewById(R.id.descriptionlbl);

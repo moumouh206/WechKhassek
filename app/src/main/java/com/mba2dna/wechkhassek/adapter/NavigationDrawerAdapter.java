@@ -60,7 +60,7 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
         public MyViewHolder(View itemView) {
             super(itemView);
             Typeface tl = Typeface.createFromAsset(context.getAssets(),
-                    Constants.fontLight);
+                    Constants.NexaLight);
             title = (TextView) itemView.findViewById(R.id.title);
             title.setTypeface(tl);
             icon = (ImageView) itemView.findViewById(R.id.itemIcom);

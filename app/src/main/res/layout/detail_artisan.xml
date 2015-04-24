@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <!--
+         <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="170dip"
+        android:scaleType="centerCrop"
+        android:src="@drawable/contact" />
+    -->
+
+    <RelativeLayout
+        android:id="@+id/maploau"
+        android:layout_width="match_parent"
+        android:layout_height="170dip"
+        android:background="#ffffff" >
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="170dip"
+            android:background="#ffffff" >
+        </com.google.android.gms.maps.MapView>
+
+
+
+        <TextView
+            android:id="@+id/informationrapide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/map"
+            android:background="#77000000"
+            android:paddingBottom="14dip"
+            android:paddingLeft="8dip"
+            android:paddingTop="14dip"
+            android:text="@string/information_rapide"
+            android:textColor="#FFFFFFFF"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/nomprenom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/maploau"
+        android:background="#FFffffff"
+        android:paddingBottom="3dip"
+        android:paddingLeft="8dip"
+        android:paddingTop="14dip"
+        android:text="Large Text"
+        android:textColor="#FF333333"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/spe"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/nomprenom"
+        android:background="#FFffffff"
+        android:paddingBottom="4dip"
+        android:paddingLeft="8dip"
+        android:paddingTop="4dip"
+        android:text="Medium Text"
+        android:textColor="#FF999999"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/adr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/spe"
+        android:background="#FFffffff"
+        android:paddingBottom="4dip"
+        android:paddingLeft="8dip"
+        android:paddingTop="4dip"
+        android:text="Medium Text"
+        android:textColor="#FF999999"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/caltxt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/adr"
+        android:background="#FFffffff"
+        android:paddingBottom="4dip"
+        android:paddingLeft="8dip"
+        android:paddingTop="4dip"
+        android:text="Medium Text"
+        android:textColor="#FF999999"
+        android:textSize="12sp" />
+
+        <LinearLayout
+            android:id="@+id/phone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lnt"
+            android:background="#FFffffff"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="14dip"
+            android:paddingTop="14dip" >
+
+            <Button
+                android:id="@+id/callBtn"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:drawableLeft="@drawable/ic_magnify_white_24dp"
+                android:minHeight="38dp"
+                android:text="@string/appeler_cette_artisan"
+                android:textColor="@android:color/white" />
+            <!--
+          <fragment 
+          android:id="@+id/map"
+          android:layout_width="match_parent"
+          android:layout_height="170dip"
+          android:name="com.google.android.gms.maps.MapFragment"/>
+            -->
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/star1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/nomprenom"
+            android:layout_marginRight="2dp"
+            android:tint="@color/colorAccent"
+            android:src="@drawable/ic_star_black_24dp" />
+<LinearLayout
+    android:id="@+id/lnt"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_alignParentRight="true"
+    android:layout_below="@+id/caltxt"
+    android:background="@color/whiteColor">
+    <TextView
+        android:id="@+id/disptxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFffffff"
+        android:paddingBottom="4dip"
+        android:paddingLeft="8dip"
+        android:paddingTop="18dip"
+        android:paddingRight="15dp"
+        android:text="Disponible les jours suivantes:"
+        android:textColor="#FF999999"
+        android:textSize="12sp" />
+    <ListView
+        android:id="@+id/listDisp"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="@color/colorPrimary" >
+    </ListView>
+    </LinearLayout>
+
+
+</RelativeLayout>

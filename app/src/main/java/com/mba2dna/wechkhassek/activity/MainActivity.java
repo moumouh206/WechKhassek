@@ -1,10 +1,7 @@
 package com.mba2dna.wechkhassek.activity;
 
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,15 +9,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-
+import android.widget.Toast;
 
 import com.mba2dna.wechkhassek.CompanyFragment;
 import com.mba2dna.wechkhassek.R;
-import com.mba2dna.wechkhassek.constants.Constants;
 import com.mba2dna.wechkhassek.util.UserFunctions;
+import com.rey.material.app.Dialog;
+import com.rey.material.app.DialogFragment;
+import com.rey.material.app.SimpleDialog;
 
 
 public class MainActivity extends ActionBarActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -29,7 +26,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
-
+    private Dialog.Builder builder = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,50 +49,8 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_logout) {
-            new AlertDialog.Builder(this)
-                    .setIcon(R.drawable.ic_launcher)
-                    .setTitle("Fermer la Session")
-                    .setMessage("Etes vous sure de vouloir fermer la session?")
-                    .setPositiveButton("Oui",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog,
-                                                    int which) {
-									UserFunctions userFunction = new UserFunctions();
-									userFunction
-											.logoutUser(getApplicationContext());
-									Intent login = new Intent(
-											getApplicationContext(),
-											LoginActivity.class);
-									login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-									startActivity(login);
-                                    finish();
-                                }
-
-                            }).setNegativeButton("Non", null).show();
-            return true;
-        }
 
 
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void onDrawerItemSelected(View view, int position) {
@@ -111,11 +66,11 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 title = getString(R.string.title_home);
                 break;
             case 1:
-                fragment = new VolsFragment();
-                title = getString(R.string.title_vols);
+                fragment = new RechercheArtisantFragment();
+                title = getString(R.string.title_recherche);
                 break;
             case 2:
-                fragment = new CitiesFragment();
+                fragment = new AddArtisantFragment();
                 title = getString(R.string.title_messages);
                 break;
             case 3:
@@ -123,8 +78,33 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 title = getString(R.string.title_messages);
                 break;
             case 5:
-                fragment = new MeteoFragment();
-                title = getString(R.string.title_messages);
+                builder = new SimpleDialog.Builder(R.style.Popupmenu){
+                    @Override
+                    public void onPositiveActionClicked(DialogFragment fragment) {
+                        UserFunctions userFunction = new UserFunctions();
+                        userFunction
+                                .logoutUser(getApplicationContext());
+                        Intent login = new Intent(
+                                getApplicationContext(),
+                                LoginActivity.class);
+                        login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(login);
+                        finish();
+                        super.onPositiveActionClicked(fragment);
+                    }
+
+                    @Override
+                    public void onNegativeActionClicked(DialogFragment fragment) {
+                        Toast.makeText(fragment.getDialog().getContext(), "Canceled", Toast.LENGTH_SHORT).show();
+                        super.onNegativeActionClicked(fragment);
+                    }
+                };
+
+                ((SimpleDialog.Builder)builder).message("Etes vous sure de vouloir fermer la session?").title("Fermer la Session")
+                        .positiveAction("Oui")
+                        .negativeAction("Non");
+                DialogFragment fragment2 = DialogFragment.newInstance(builder);
+                fragment2.show(getSupportFragmentManager(), null);
                 break;
             default:
                 break;

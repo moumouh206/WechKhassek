@@ -1,11 +1,8 @@
 package com.mba2dna.wechkhassek.adapter;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
-import android.opengl.Visibility;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +10,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
 import com.mba2dna.wechkhassek.R;
-import com.mba2dna.wechkhassek.app.AppController;
 import com.mba2dna.wechkhassek.model.Artisan;
+
+import java.util.List;
 
 public class CustomListAdapter extends BaseAdapter {
 	private Activity activity;
 	private LayoutInflater inflater;
 	private List<Artisan> movieItems;
-	ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+	//ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
 	public CustomListAdapter(Activity activity, List<Artisan> movieItems) {
 		this.activity = activity;
@@ -54,8 +50,8 @@ public class CustomListAdapter extends BaseAdapter {
 		if (convertView == null)
 			convertView = inflater.inflate(R.layout.list_row, null);
 
-		if (imageLoader == null)
-			imageLoader = AppController.getInstance().getImageLoader();
+		//if (imageLoader == null)
+			//imageLoader = AppController.getInstance().getImageLoader();
 		/*
 		 * NetworkImageView thumbNail = (NetworkImageView) convertView
 		 * .findViewById(R.id.thumbnail);

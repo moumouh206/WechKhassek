@@ -6,28 +6,19 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Cache;
-import com.android.volley.Network;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.BasicNetwork;
-import com.android.volley.toolbox.DiskBasedCache;
-import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.mba2dna.wechkhassek.R;
-import com.mba2dna.wechkhassek.app.AppController;
 import com.mba2dna.wechkhassek.app.RequesteVolley;
 import com.mba2dna.wechkhassek.constants.Constants;
 import com.mba2dna.wechkhassek.util.DatabaseHandler;
@@ -66,8 +57,8 @@ public class LoginActivity extends ActionBarActivity {
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Connexion en cours...");
         pDialog.setCancelable(false);
-        String fontBold = "fonts/NexaBold.ttf";
-        String fontLight = "fonts/NexaLight.ttf";
+        String fontBold = Constants.NexaBold;
+        String fontLight = Constants.NexaLight;
         Typeface tf = Typeface.createFromAsset(getAssets(), fontBold);
         Typeface tl = Typeface.createFromAsset(getAssets(), fontLight);
 
@@ -262,12 +253,7 @@ public class LoginActivity extends ActionBarActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_login, menu);
-        return true;
-    }
+
     // Private class isNetworkAvailable
     private boolean isNetworkAvailable() {
         // Using ConnectivityManager to check for Network Connection
@@ -277,18 +263,5 @@ public class LoginActivity extends ActionBarActivity {
                 .getActiveNetworkInfo();
         return activeNetworkInfo != null;
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

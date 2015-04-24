@@ -8,7 +8,7 @@
     <!-- Thumbnail Image -->
     <ImageView
         android:id="@+id/thumbnail"
-        android:background="@drawable/logo"
+        android:background="@drawable/ic_thumbnail"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentLeft="true"
@@ -85,6 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:tint="@color/colorAccent"
         android:src="@drawable/ic_star_grey600_24dp" />
  
 </RelativeLayout>

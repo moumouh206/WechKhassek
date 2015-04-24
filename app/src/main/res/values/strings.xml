@@ -18,6 +18,7 @@
     <string name="title_friends">Friends</string>
     <string name="title_home">Home</string>
     <string name="title_vols">Vols</string>
+    <string name="title_recherche">Recherche</string>
     <string name="app_name">WechKhassek</string>
     <string name="title_activity_splash">WechKhassek</string>
     <string name="hello_world">Hello world!</string>
@@ -164,6 +165,7 @@
     <string name="usernamhint">Nom d\'utilisateur</string>
     <string name="RePassHint">Retaper le mot de passe</string>
     <string name="SignUpBtnTxt">Enregistrez-vous</string>
+    <string name="loginUpBtnTxt">Connectez-vous</string>
     <string name="title_activity_login">Connexion</string>
     <string name="title_activity_offres">Offres</string>
     <string name="SearchItemTxt">Search</string>

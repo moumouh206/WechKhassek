@@ -2,8 +2,11 @@ package com.mba2dna.wechkhassek.activity;
 
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,18 +17,16 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.graphics.Typeface;
-
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import com.mba2dna.wechkhassek.R;
 import com.mba2dna.wechkhassek.adapter.NavigationDrawerAdapter;
 import com.mba2dna.wechkhassek.constants.Constants;
 import com.mba2dna.wechkhassek.model.NavDrawerItem;
 import com.rey.material.widget.Button;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class FragmentDrawer extends Fragment {
@@ -51,8 +52,8 @@ public class FragmentDrawer extends Fragment {
 
     public static List<NavDrawerItem> getData() {
         List<NavDrawerItem> data = new ArrayList<>();
-        int[] icons = {R.drawable.ic_home_white_24dp, R.drawable.ic_magnify_white_24dp,R.drawable.ic_star_white_24dp, R.drawable.ic_calendar_white_24dp, R.drawable.ic_drone_white_24dp, R.drawable.ic_weather_partlycloudy_white_24dp};
-        String[] titles = { "Accueil","Rechercher un artisant","Mes Artisants Favories", "Mes rendez vous", "L’état des vols en temps réel", "Météo de la ville de destination"};
+        int[] icons = {R.drawable.ic_home_white_24dp, R.drawable.ic_format_paint_white_24dp,R.drawable.ic_magnify_white_24dp,R.drawable.ic_star_white_24dp, R.drawable.ic_calendar_white_24dp,  R.drawable.ic_power_white_24dp};
+        String[] titles = { "Accueil","Rechercher un artisant","Rechercher un Travail ","Mes Artisants Favories", "Mes rendez vous",  "Deconnexion"};
 
         // preparing navigation drawer items
         for (int i = 0; i < icons.length && i < titles.length; i++) {
@@ -77,9 +78,9 @@ public class FragmentDrawer extends Fragment {
                              Bundle savedInstanceState) {
         // Inflating view layout
         Typeface tl = Typeface.createFromAsset(getActivity().getAssets(),
-                Constants.fontLight);
+                Constants.NexaLight);
         Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
-                Constants.fontBold);
+                Constants.NexaBold);
 
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         name = (TextView) layout.findViewById(R.id.name);
@@ -89,6 +90,17 @@ public class FragmentDrawer extends Fragment {
 
         addArtisant =(Button) layout.findViewById(R.id.addArtisant);
         addArtisant.setTypeface(tf);
+        addArtisant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new AddArtisantFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container_body, fragment);
+                fragmentTransaction.commit();
+                mDrawerLayout.closeDrawer(containerView);
+            }
+        });
         recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
 
         adapter = new NavigationDrawerAdapter(getActivity(), getData());

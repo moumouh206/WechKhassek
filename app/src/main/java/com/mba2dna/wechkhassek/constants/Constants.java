@@ -1,12 +1,5 @@
 package com.mba2dna.wechkhassek.constants;
 
-import android.app.Application;
-import android.content.Context;
-import android.content.res.AssetManager;
-import android.graphics.Typeface;
-
-import com.mba2dna.wechkhassek.activity.MainActivity;
-
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -16,11 +9,12 @@ import java.util.Locale;
  */
 public class Constants  {
 
-    public static String fontBold = "fonts/NexaBold.ttf";
-    public static String  fontLight = "fonts/NexaLight.ttf";
-
+    public static String NexaBold = "fonts/NexaBold.ttf";
+    public static String NexaLight = "fonts/NexaLight.ttf";
+    public static String GothamBold = "fonts/GothamBold.ttf";
+    public static String  GothamLight = "fonts/GothamLight.ttf";
     public static final String URL = "http://depanini.16mb.com/mobile/json.php";//"http://mobile.dirannonce.com/json.php";
-    public static String API_KEY ="AIzaSyCW-GQfW80cH4V2zufLBVJhwzmABLQYqwU";
+    public static String API_KEY ="AIzaSyC3iuEk7YBh6FYU_2NDP3EWA6I1UdqtCBA";
 
 
 public static String RandomDateTime(){

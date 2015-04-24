@@ -12,11 +12,18 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
         <item name="android:windowBackground">@color/windowBackground</item>
+
+    </style>
+    <style name="Popupmenu" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
     </style>
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark">
         <!-- Customize your theme here. -->
         <item name="android:textColorPrimary">@color/whiteColor</item>
         <item name="android:textColorSecondary">@color/whiteColor</item>
+        <item name="popupMenuStyle">@style/Popupmenu</item>
+        <item name="android:popupMenuStyle">@style/Popupmenu</item>
 
     </style>
 
