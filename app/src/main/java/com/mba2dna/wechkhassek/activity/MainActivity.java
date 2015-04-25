@@ -124,7 +124,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
-                .setIcon(R.drawable.ic_launcher)
+                .setIcon(R.mipmap.ic_launcher)
                 .setTitle("Fermer l'application")
                 .setMessage("Etes vous sure de vouloir fermer l'application?")
                 .setPositiveButton("Oui", new DialogInterface.OnClickListener()
