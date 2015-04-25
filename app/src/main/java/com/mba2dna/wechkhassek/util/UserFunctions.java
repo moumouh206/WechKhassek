@@ -104,7 +104,14 @@ public class UserFunctions {
         }
         return false;
     }
-     
+    public boolean isSessionSet(Context context){
+        DatabaseHandler db = new DatabaseHandler(context);
+        int count = db.getSession();
+        if(count > 0){
+            return true;
+        }
+        return false;
+    }
     /**
      * Function to logout user
      * Reset Database

@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.widget.Toast;
 
 import com.mba2dna.wechkhassek.R;
 import com.mba2dna.wechkhassek.util.UserFunctions;
 
-import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -21,7 +19,7 @@ public class SplashActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
       //  Window.setStatusBarColor(R.color.primaryColorDark);
-        Toast.makeText(SplashActivity.this,Locale.getDefault().getLanguage(),Toast.LENGTH_LONG).show();
+       // Toast.makeText(SplashActivity.this,Locale.getDefault().getLanguage(),Toast.LENGTH_LONG).show();
         Timer RunSplash = new Timer();
 
         // Task to do when the timer ends
@@ -29,12 +27,13 @@ public class SplashActivity extends ActionBarActivity {
             @Override
             public void run() {
                 // Close SplashScreenActivity.class
+                userFunctions = new UserFunctions();
                 SharedPreferences prefs = getSharedPreferences("WechKhassek", 0);
                 SharedPreferences.Editor editor = prefs.edit();
                 Intent intent;
-                if (prefs.getString("isInitial", null)=="1")
+                if (userFunctions.isSessionSet(getApplicationContext()))
                 {
-                    userFunctions = new UserFunctions();
+
                     if (userFunctions.isUserLoggedIn(getApplicationContext())) {
 
                         Intent myIntent = new Intent(SplashActivity.this,
@@ -53,12 +52,6 @@ public class SplashActivity extends ActionBarActivity {
                 }
                 else
                 {
-                    //First Time App launched, you are putting isInitialAppLaunch to false and calling create password activity.
-                    editor.remove("isInitial"); // will delete key email
-                    editor.commit();
-                    editor.putString("isInitial", "1");
-                    editor.commit();
-                   // Toast.makeText(SplashActivity.this,"resultat2 :" +prefs.getString("isInitial", null),Toast.LENGTH_LONG).show();
 
                     intent = new Intent(SplashActivity.this, TutorialActivity.class);
                     startActivity(intent);

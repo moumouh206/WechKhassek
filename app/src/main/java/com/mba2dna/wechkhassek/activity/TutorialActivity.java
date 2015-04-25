@@ -16,7 +16,8 @@ import android.widget.TextView;
 
 import com.mba2dna.wechkhassek.R;
 import com.mba2dna.wechkhassek.constants.Constants;
-import com.mba2dna.wechkhassek.util.UserFunctions;
+        import com.mba2dna.wechkhassek.util.DatabaseHandler;
+        import com.mba2dna.wechkhassek.util.UserFunctions;
 
 import me.relex.circleindicator.CircleIndicator;
 
@@ -31,8 +32,8 @@ public class TutorialActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
-        // ViewPager and its adapters use support library
-        // fragments, so use getSupportFragmentManager.
+        DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+        db.addTutorial();
         mDemoCollectionPagerAdapter =
                 new DemoCollectionPagerAdapter(
                         getSupportFragmentManager());
@@ -50,10 +51,6 @@ public class TutorialActivity extends FragmentActivity {
         PassBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* SharedPreferences pref = getSharedPreferences("ActivityPREF", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor ed = pref.edit();
-                    ed.putBoolean("activity_executed", true);
-                    ed.commit();*/
                 userFunctions = new UserFunctions();
                 if (userFunctions.isUserLoggedIn(getApplicationContext())) {
                     finish();
@@ -73,8 +70,6 @@ public class TutorialActivity extends FragmentActivity {
         });
     }
 
-    // Since this is an object collection, use a FragmentStatePagerAdapter,
-// and NOT a FragmentPagerAdapter.
     public class DemoCollectionPagerAdapter extends FragmentStatePagerAdapter {
         public DemoCollectionPagerAdapter(FragmentManager fm) {
             super(fm);

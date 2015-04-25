@@ -1,0 +1,84 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.mba2dna.wechkhassek.activity.TravailFragment" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:padding="5dp" >
+
+        <TextView
+            android:id="@+id/explicationtxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/titre1"
+            android:layout_marginTop="2dp"
+            android:gravity="center_horizontal"
+            android:text="@string/vous_pouvez_filtrer_votre_recherche_ici" />
+
+        <TextView
+            android:id="@+id/titre1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:text="@string/section_de_recherche_des_services" />
+
+        <TextView
+            android:id="@+id/SpecialiteTxt1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/explicationtxt"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="7dp"
+            android:text="@string/sp_cialit_"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Spinner
+            android:id="@+id/sprinnerCom1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/SpecialiteTxt1"
+            android:layout_marginTop="2dp" />
+
+        <Button
+            android:id="@+id/callBtn"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sprinnerCom1"
+            android:background="@color/colorAccent"
+            android:drawableLeft="@drawable/ic_magnify_black_24dp"
+            android:maxHeight="38dp"
+            android:minHeight="38dp"
+            android:text="@string/lancer_votre_recherche"
+            android:textColor="@color/colorPrimary" />
+
+        <ListView
+            android:id="@+id/listOffre"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/callBtn"
+            android:layout_centerHorizontal="true" >
+        </ListView>
+
+        <ViewStub
+            android:id="@+id/emptyElement"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/listOffre"
+            android:layout_gravity="center"
+            android:layout="@layout/empty" />
+    </RelativeLayout>
+
+</RelativeLayout>

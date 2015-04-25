@@ -5,13 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -24,11 +22,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.mba2dna.wechkhassek.R;
 import com.mba2dna.wechkhassek.adapter.CustomListAdapter;
+import com.mba2dna.wechkhassek.app.MyConstans;
 import com.mba2dna.wechkhassek.app.RequesteVolley;
 import com.mba2dna.wechkhassek.constants.Constants;
 import com.mba2dna.wechkhassek.model.Artisan;
 import com.mba2dna.wechkhassek.service.GPSTracker;
-import com.mba2dna.wechkhassek.util.DatabaseHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,10 +38,16 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RechercheArtisantFragment extends Fragment {
-    String ArtisanUrl = Constants.URL + "?searchArtisan=true&n=";
-    TextView saerchTxt;
+public class TravailFragment extends Fragment {
+
+    TextView wl;
+    // GPSTracker class
+    GPSTracker gps;
+    private String[] Specialites;
+    private Spinner mySpinner;
     private Typeface myFont;
+    String ArtisanUrl = MyConstans.URL + "?searchArtisan=true&n=";
+    TextView saerchTxt;
     // Log tag
     private static final String TAG = "Message";
 
@@ -53,52 +57,59 @@ public class RechercheArtisantFragment extends Fragment {
     private List<Artisan> ArtisanList = new ArrayList<Artisan>();
     private ListView listView;
     private CustomListAdapter adapter;
-    private String[] Specialites;
-    private Spinner mySpinner;
-    GPSTracker gps;
-
-    public RechercheArtisantFragment() {
+    public TravailFragment() {
         // Required empty public constructor
     }
-
-
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View Root =inflater.inflate(R.layout.fragment_recherche_artisant, container, false);
+        View root=inflater.inflate(R.layout.fragment_travail, container, false);
+        String fontBold = Constants.NexaBold;
         String fontLight = Constants.NexaLight;
-
-        Specialites = getResources().getStringArray(R.array.specialiter_array);
-
+        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), fontBold);
+        Typeface tl = Typeface.createFromAsset(getActivity().getAssets(), fontLight);
         myFont = Typeface.createFromAsset(getActivity().getAssets(), fontLight);
-        Button rechercBtn = (Button) Root.findViewById(R.id.recherchBtn1);
-        rechercBtn.setTypeface(myFont);
+        Specialites = getResources().getStringArray(R.array.specialiter_array);
+        TextView Recherch1 = (TextView) root.findViewById(R.id.titre1);
+        Recherch1.setTypeface(tf);
+        TextView SpecialiteTxt = (TextView) root.findViewById(R.id.SpecialiteTxt1);
+        SpecialiteTxt.setTypeface(tf);
+        TextView Recherch2 = (TextView) root.findViewById(R.id.explicationtxt);
+        Recherch2.setTypeface(tl);
+
+        mySpinner = (Spinner) root.findViewById(R.id.sprinnerCom1);
+        MyArrayAdapter ma = new MyArrayAdapter(getActivity());
+        mySpinner.setAdapter(ma);
+
+        Button rechercBtn = (Button) root.findViewById(R.id.callBtn);
+        rechercBtn.setTypeface(tl);
         rechercBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
+
                 ArtisanList.clear();
                 pDialog = new ProgressDialog(getActivity());
                 // Showing progress dialog before making http request
                 pDialog.setMessage("Chargement...");
                 pDialog.show();
-                gps = new GPSTracker(getActivity().getApplicationContext());
+                gps = new GPSTracker(getActivity());
                 if (gps.canGetLocation()) {
                     double latitude = gps.getLatitude();
                     double longitude = gps.getLongitude();
-                    ArtisanUrl = Constants.URL + "?searchArtisan=true&l="
-                            + latitude + "&g=" + longitude + "&s=" + mySpinner.getSelectedItemPosition();
+                    ArtisanUrl = MyConstans.URL + "?searchOffre=true&l="
+                            + latitude + "&g=" + longitude + "&s="
+                            + mySpinner.getSelectedItemPosition();
                 } else {
-                    ArtisanUrl = Constants.URL + "?searchArtisan=true&s="
+                    ArtisanUrl = MyConstans.URL + "?searchOffre=true&s="
                             + mySpinner.getSelectedItemPosition();
                 }
-
                 Log.d(TAG, ArtisanUrl);
                 JsonObjectRequest movieReq = new JsonObjectRequest(
-                        Request.Method.GET, ArtisanUrl,(String) null,
+                        Request.Method.GET, ArtisanUrl, (String)null,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
@@ -106,8 +117,7 @@ public class RechercheArtisantFragment extends Fragment {
                                 hidePDialog();
                                 JSONArray Annonces;
                                 try {
-                                    Annonces = response
-                                            .getJSONArray("Artisans");
+                                    Annonces = response.getJSONArray("Offres");
                                     // Parsing json
                                     for (int i = 0; i < Annonces.length(); i++) {
                                         try {
@@ -115,7 +125,7 @@ public class RechercheArtisantFragment extends Fragment {
                                                     .getJSONObject(i);
                                             Artisan artisan = new Artisan();
                                             artisan.setName(obj
-                                                    .getString("Nom"));
+                                                    .getString("titre"));
                                             artisan.setThumbnailUrl(obj
                                                     .getString("image"));
                                             artisan.setTele(obj
@@ -124,12 +134,7 @@ public class RechercheArtisantFragment extends Fragment {
                                                     .getInt("specialite")]);
                                             artisan.setAdress(obj
                                                     .getString("address"));
-                                            artisan.setLat(obj
-                                                    .getString("lat"));
-                                            artisan.setLang(obj
-                                                    .getString("lang"));
-                                            artisan.setCalls(obj
-                                                    .getString("calls"));
+
                                             ArtisanList.add(artisan);
                                         } catch (JSONException e) {
                                             e.printStackTrace();
@@ -158,92 +163,16 @@ public class RechercheArtisantFragment extends Fragment {
                 });
 
                 // Adding request to request queue
-               // AppController.getInstance().addToRequestQueue(movieReq);
                 RequesteVolley.getInstance(getActivity().getApplicationContext()).addToRequestQueue(movieReq);
 
             }
         });
-        mySpinner = (Spinner) Root.findViewById(R.id.sprinnerSpecialiterFilter);
-        MyArrayAdapter ma = new MyArrayAdapter(getActivity().getApplicationContext());
-        mySpinner.setAdapter(ma);
-        mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                       int arg2, long arg3) {
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-        });
-        listView = (ListView) Root.findViewById(R.id.list);
+        listView = (ListView) root.findViewById(R.id.listOffre);
+        listView.setEmptyView(root.findViewById(R.id.emptyElement));
         adapter = new CustomListAdapter(getActivity(), ArtisanList);
         listView.setAdapter(adapter);
-        listView.setEmptyView(Root.findViewById(R.id.emptyElement));
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3) {
-                TextView tele = (TextView) arg1.findViewById(R.id.releaseYear);
-                TextView nom = (TextView) arg1.findViewById(R.id.title);
-                TextView spe = (TextView) arg1.findViewById(R.id.rating);
-                TextView adr = (TextView) arg1.findViewById(R.id.genre);
-                TextView lat = (TextView) arg1.findViewById(R.id.lat);
-                TextView lang = (TextView) arg1.findViewById(R.id.lang);
-                TextView Calltxt = (TextView) arg1.findViewById(R.id.Calltxt);
-                DatabaseHandler db = new DatabaseHandler(
-                        getActivity().getApplicationContext());
-                db.deleteTitle("'"+nom.getText().toString()+"'");
-                db.addArtisan(
-                        nom.getText().toString(),
-                        spe.getText().toString(),
-                        adr.getText().toString(),
-                        tele.getText().toString(),
-                        lat.getText().toString(),
-                        lang.getText().toString(),
-                        Calltxt.getText().toString());
-                // Toast.makeText(ArtisanListTab.this, lat.getText().toString()+" SUCCESS "+lang.getText().toString(), Toast.LENGTH_LONG).show();
-
-                Bundle args = new Bundle();
-                args.putString("nom", nom.getText().toString());
-                args.putString("spe", spe.getText().toString());
-                args.putString("adr", adr.getText().toString());
-                args.putString("tele", tele.getText().toString());
-                args.putString("lat", lat.getText().toString());
-                args.putString("lang", lang.getText().toString());
-                args.putString("Calls", Calltxt.getText().toString());
-
-                DetailArtisanActivity dialo = new DetailArtisanActivity();
-                dialo.setArguments(args);
-                dialo.show(getActivity().getSupportFragmentManager(), "DetailArtisanActivity");
-            }
-
-        });
-        return Root;
+        return root;
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        DatabaseHandler db = new DatabaseHandler(
-                getActivity().getApplicationContext());
-        ArtisanList.clear();
-        ArtisanList.addAll(db.getAllArtisans());
-        adapter = new CustomListAdapter(getActivity(), ArtisanList);
-        listView.setAdapter(adapter);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-    }
-
     private void hidePDialog() {
         if (pDialog != null) {
             pDialog.dismiss();
@@ -261,11 +190,13 @@ public class RechercheArtisantFragment extends Fragment {
         private LayoutInflater mInflater;
 
         public MyArrayAdapter(Context inscriptionTab) {
+            // TODO Auto-generated constructor stub
             mInflater = LayoutInflater.from(inscriptionTab);
         }
 
         @Override
         public int getCount() {
+            // TODO Auto-generated method stub
             return Specialites.length;
         }
 

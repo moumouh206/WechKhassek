@@ -1,12 +1,5 @@
 package com.mba2dna.wechkhassek.util;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -14,6 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.mba2dna.wechkhassek.model.Artisan;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
  
 public class DatabaseHandler extends SQLiteOpenHelper {
  
@@ -22,11 +22,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
  
     // Database Name
-    private static final String DATABASE_NAME = "dirannonce";
+    private static final String DATABASE_NAME = "wechkhassek";
  
     // Login table name
     private static final String TABLE_LOGIN = "login";
     private static final String TABLE_ARTISAN = "artisan";
+    private static final String TABLE_Tutorial = "tutorial";
  
     // Login Table Columns names
     private static final String KEY_ID = "id";
@@ -60,6 +61,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + "Calls TEXT,"
                 + KEY_CREATED_AT + " TEXT" + ")";
         db.execSQL(CREATE_ARTISAN_TABLE);
+        String CREATE_TUTORIAL_TABLE = "CREATE TABLE " + TABLE_Tutorial + "("
+                + KEY_ID + " INTEGER PRIMARY KEY,"
+                + KEY_NAME + " TEXT,"
+                + KEY_CREATED_AT + " TEXT" + ")";
+        db.execSQL(CREATE_TUTORIAL_TABLE);
     }
  
     // Upgrading database
@@ -68,6 +74,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOGIN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ARTISAN);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_Tutorial);
  
         // Create tables again
         onCreate(db);
@@ -109,7 +116,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insert(TABLE_ARTISAN, null, values);
         db.close(); // Closing database connection
     }
-     
+    public void addTutorial() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, "moh"); // Name
+        values.put(KEY_CREATED_AT, dateFormat.format(date).toString()); // Created At
+        // Inserting Row
+        db.insert(TABLE_Tutorial, null, values);
+        db.close(); // Closing database connection
+    }
     /**
      * Getting user data from database
      * */
@@ -175,6 +192,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cursor.close();
          
         // return row count
+        return rowCount;
+    }
+    public int getSession() {
+        String countQuery = "SELECT  * FROM " + TABLE_Tutorial;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        int rowCount = cursor.getCount();
+        db.close();
+        cursor.close();
         return rowCount;
     }
     public int DeleteRowCount(Integer coun ) {
