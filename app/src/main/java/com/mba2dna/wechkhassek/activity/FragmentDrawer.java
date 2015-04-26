@@ -96,6 +96,7 @@ public class FragmentDrawer extends Fragment {
                 Fragment fragment = new AddArtisantFragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
                 fragmentTransaction.replace(R.id.container_body, fragment);
                 fragmentTransaction.commit();
                 mDrawerLayout.closeDrawer(containerView);

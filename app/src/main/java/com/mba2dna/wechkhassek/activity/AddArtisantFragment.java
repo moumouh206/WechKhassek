@@ -1,11 +1,18 @@
 package com.mba2dna.wechkhassek.activity;
 
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -34,10 +41,10 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.LatLng;
 import com.mba2dna.wechkhassek.R;
-import com.mba2dna.wechkhassek.app.MyConstans;
 import com.mba2dna.wechkhassek.app.RequesteVolley;
 import com.mba2dna.wechkhassek.constants.Constants;
 import com.mba2dna.wechkhassek.service.GPSTracker;
+import com.mba2dna.wechkhassek.util.UserFunctions;
 import com.rey.material.widget.Button;
 
 import org.json.JSONArray;
@@ -213,7 +220,223 @@ public class AddArtisantFragment extends Fragment {
         mySpinner.setAdapter(ma);
         Button inscriptionBtn = (Button) root.findViewById(R.id.inscriptionBtn);
         inscriptionBtn.setTypeface(tl);
+        inscriptionBtn.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View arg0) {
+                gps = new GPSTracker(getActivity(). getApplicationContext());
+
+                // check if GPS enabled
+                if (gps.canGetLocation()) {
+
+                    // lt = gps.getLatitude();
+                    // lg = gps.getLongitude();
+                    if (!isNetworkAvailable()) {
+                        // Create an Alert Dialog
+                        Context context = getActivity(). getApplicationContext();
+                        CharSequence text = "Probleme de connexion au serveur";
+                        int duration = Toast.LENGTH_LONG;
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    } else {
+
+                       /* pDialog = new ProgressDialog(getActivity(). getApplicationContext());
+                        pDialog.setMessage("Enregistrement en cours...");
+
+                        pDialog.setCancelable(false);
+                        pDialog.show();*/
+                        try {
+                            String LoginUrl = Constants.URL
+                                    + "?addArtisan=true&n="
+                                    + nom.getText().toString()
+                                    .replace(" ", "_")
+                                    + "&p="
+                                    + prenom.getText().toString().toString()
+                                    .replace(" ", "_") + "&t="
+                                    + phone.getText().toString() + "&s="
+                                    + mySpinner.getSelectedItem().toString()
+                                    + "&l=" + lt + "&g=" + lg + "&a="
+                                    + adrTxt.getText().toString();
+                            Log.d("Inscription", LoginUrl);
+                            JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                                    Request.Method.GET, LoginUrl, (String) null,
+                                    new Response.Listener<JSONObject>() {
+
+                                        @Override
+                                        public void onResponse(
+                                                JSONObject response) {
+                                            Log.d("Inscription",
+                                                    response.toString());
+                                          //  pDialog.hide();
+                                            try {
+                                                if (response
+                                                        .getString(KEY_SUCCESS) != null) {
+                                                    String res = response
+                                                            .getString(KEY_SUCCESS);
+                                                    if (Integer.parseInt(res) == 1) {
+                                                        uid = response
+                                                                .getString("uid");
+                                                        // Toast.makeText(getApplicationContext(),"La uid :"+
+                                                        // uid +" ",
+                                                        // Toast.LENGTH_SHORT).show();
+                                                        nom.setText("");
+                                                        prenom.setText("");
+                                                        phone.setText("");
+                                                        mySpinner
+                                                                .setSelection(0);
+                                                        l.setVisibility(View.GONE);
+
+                                                        new AlertDialog.Builder(
+                                                                getActivity())
+                                                                .setIcon(
+                                                                        R.drawable.ic_launcher)
+                                                                .setTitle(
+                                                                        "Inscription réussi")
+                                                                .setMessage(
+                                                                        "Vous avez bien inscris l'artisan, Voullez vous ajouter des dates de desponibilités  ?")
+                                                                .setPositiveButton(
+                                                                        "Oui",
+                                                                        new DialogInterface.OnClickListener() {
+                                                                            @Override
+                                                                            public void onClick(
+                                                                                    DialogInterface dialog,
+                                                                                    int which) {
+                                                                               Fragment fragment = new AgendaFragment();
+                                                                                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                                                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                                                                fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+                                                                                fragmentTransaction.replace(R.id.container_body, fragment);
+                                                                                fragmentTransaction.commit();
+                                                                            }
+
+                                                                        })
+                                                                .setNegativeButton(
+                                                                        "Non",
+                                                                        new DialogInterface.OnClickListener() {
+                                                                            @Override
+                                                                            public void onClick(
+                                                                                    DialogInterface dialog,
+                                                                                    int which) {
+                                                                              /*  new AlertDialog.Builder(
+                                                                                        getActivity())
+                                                                                        .setIcon(
+                                                                                                R.drawable.ic_launcher)
+                                                                                        .setTitle(
+                                                                                                "Fermer la Session")
+                                                                                        .setMessage(
+                                                                                                "Etes vous sure de vouloir fermer la session?")
+                                                                                        .setPositiveButton(
+                                                                                                "Oui",
+                                                                                                new DialogInterface.OnClickListener() {
+                                                                                                    @Override
+                                                                                                    public void onClick(
+                                                                                                            DialogInterface dialog,
+                                                                                                            int which) {
+                                                                                                        UserFunctions userFunction = new UserFunctions();
+                                                                                                        userFunction
+                                                                                                                .logoutUser(getActivity(). getApplicationContext());
+                                                                                                        Intent login = new Intent(
+                                                                                                                getActivity(). getApplicationContext(),
+                                                                                                                LoginActivity.class);
+                                                                                                        login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                                                                        startActivity(login);
+                                                                                                       // finish();
+                                                                                                    }
+
+                                                                                                })
+                                                                                        .setNegativeButton(
+                                                                                                "Non",
+                                                                                                null)
+                                                                                        .show();*/
+                                                                            }
+
+                                                                        })
+                                                                .show();
+
+                                                    } else {
+                                                        if (response
+                                                                .getString(KEY_ERROR_MSG) != null) {
+                                                            Context context = getActivity(). getApplicationContext();
+                                                            CharSequence text = response
+                                                                    .getString(KEY_ERROR_MSG);
+                                                            int duration = Toast.LENGTH_LONG;
+
+                                                            Toast toast = Toast
+                                                                    .makeText(
+                                                                            context,
+                                                                            text,
+                                                                            duration);
+                                                            toast.show();
+                                                        } else {
+                                                            Context context = getActivity(). getApplicationContext();
+                                                            CharSequence text = "Probleme de connexion au serveur";
+                                                            int duration = Toast.LENGTH_LONG;
+
+                                                            Toast toast = Toast
+                                                                    .makeText(
+                                                                            context,
+                                                                            text,
+                                                                            duration);
+                                                            toast.show();
+                                                        }
+                                                    }
+                                                } else {
+                                                    if (response
+                                                            .getString(KEY_ERROR_MSG) != null) {
+                                                        Context context = getActivity(). getApplicationContext();
+                                                        CharSequence text = response
+                                                                .getString(KEY_ERROR_MSG);
+                                                        int duration = Toast.LENGTH_LONG;
+
+                                                        Toast toast = Toast
+                                                                .makeText(
+                                                                        context,
+                                                                        text,
+                                                                        duration);
+                                                        toast.show();
+                                                    } else {
+                                                        Context context = getActivity(). getApplicationContext();
+                                                        CharSequence text = "Probleme de connexion au serveur";
+                                                        int duration = Toast.LENGTH_LONG;
+
+                                                        Toast toast = Toast
+                                                                .makeText(
+                                                                        context,
+                                                                        text,
+                                                                        duration);
+                                                        toast.show();
+                                                    }
+                                                }
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    }, new Response.ErrorListener() {
+
+                                @Override
+                                public void onErrorResponse(
+                                        VolleyError error) {
+                                    Log.d("Inscription", "Error: "
+                                            + error.getMessage());
+                                  //  pDialog.hide();
+                                }
+                            }) {
+
+                            };
+                            // Adding request to request queue
+                            RequesteVolley.getInstance(getActivity().getApplicationContext()).addToRequestQueue(jsonObjReq);
+                        } catch (Exception e) {
+                            Log.d("Inscription", "Error: " + e.getMessage());
+
+                        }
+
+                    }
+                } else {
+
+                }
+
+            }
+        });
         MapsInitializer.initialize(getActivity());
 
         switch (GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity())) {
@@ -307,7 +530,7 @@ public class AddArtisantFragment extends Fragment {
 
                         pDialog.setCancelable(false);
                         pDialog.show();
-                        String lien = MyConstans.URL + "?getAddress=true&l=" + lt
+                        String lien = Constants.URL + "?getAddress=true&l=" + lt
                                 + "&g=" + lg;
                         JsonObjectRequest movieReq = new JsonObjectRequest(
                                 Request.Method.GET, lien,(String) null,
@@ -450,5 +673,13 @@ public class AddArtisantFragment extends Fragment {
 
         TextView name;
 
+    }
+    // Private class isNetworkAvailable
+    private boolean isNetworkAvailable() {
+        // Using ConnectivityManager to check for Network Connection
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity(). getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager
+                .getActiveNetworkInfo();
+        return activeNetworkInfo != null;
     }
 }

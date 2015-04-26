@@ -22,7 +22,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.mba2dna.wechkhassek.R;
 import com.mba2dna.wechkhassek.adapter.CustomListAdapter;
-import com.mba2dna.wechkhassek.app.MyConstans;
 import com.mba2dna.wechkhassek.app.RequesteVolley;
 import com.mba2dna.wechkhassek.constants.Constants;
 import com.mba2dna.wechkhassek.model.Artisan;
@@ -46,7 +45,7 @@ public class TravailFragment extends Fragment {
     private String[] Specialites;
     private Spinner mySpinner;
     private Typeface myFont;
-    String ArtisanUrl = MyConstans.URL + "?searchArtisan=true&n=";
+    String ArtisanUrl = Constants.URL + "?searchArtisan=true&n=";
     TextView saerchTxt;
     // Log tag
     private static final String TAG = "Message";
@@ -100,11 +99,11 @@ public class TravailFragment extends Fragment {
                 if (gps.canGetLocation()) {
                     double latitude = gps.getLatitude();
                     double longitude = gps.getLongitude();
-                    ArtisanUrl = MyConstans.URL + "?searchOffre=true&l="
+                    ArtisanUrl = Constants.URL + "?searchOffre=true&l="
                             + latitude + "&g=" + longitude + "&s="
                             + mySpinner.getSelectedItemPosition();
                 } else {
-                    ArtisanUrl = MyConstans.URL + "?searchOffre=true&s="
+                    ArtisanUrl = Constants.URL + "?searchOffre=true&s="
                             + mySpinner.getSelectedItemPosition();
                 }
                 Log.d(TAG, ArtisanUrl);

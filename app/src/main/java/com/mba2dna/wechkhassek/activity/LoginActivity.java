@@ -18,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.github.johnpersano.supertoasts.SuperToast;
 import com.mba2dna.wechkhassek.R;
 import com.mba2dna.wechkhassek.app.RequesteVolley;
 import com.mba2dna.wechkhassek.constants.Constants;
@@ -25,6 +26,8 @@ import com.mba2dna.wechkhassek.util.DatabaseHandler;
 import com.mba2dna.wechkhassek.util.UserFunctions;
 import com.rey.material.widget.Button;
 import com.rey.material.widget.EditText;
+
+import net.steamcrafted.loadtoast.LoadToast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,6 +49,7 @@ public class LoginActivity extends ActionBarActivity {
     private static String KEY_EMAIL = "email";
     private static String KEY_CREATED_AT = "entry_date";
 
+   private LoadToast lt ;
     // Tag used to cancel the request
     String tag_json_obj = "json_obj_req";
     @Override
@@ -54,9 +58,13 @@ public class LoginActivity extends ActionBarActivity {
         setContentView(R.layout.activity_login);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        pDialog = new ProgressDialog(this);
+       /* pDialog = new ProgressDialog(this);
         pDialog.setMessage("Connexion en cours...");
-        pDialog.setCancelable(false);
+        pDialog.setCancelable(false);*/
+        lt = new LoadToast(this);
+        lt.setText("Connexion en cours...");
+        lt.setTranslationY(200);
+        lt.setProgressColor(getResources().getColor(R.color.colorAccent));
         String fontBold = Constants.NexaBold;
         String fontLight = Constants.NexaLight;
         Typeface tf = Typeface.createFromAsset(getAssets(), fontBold);
@@ -74,19 +82,22 @@ public class LoginActivity extends ActionBarActivity {
             @Override
             public void onClick(View arg0) {
                 if (!isNetworkAvailable()) {
-                    // Create an Alert Dialog
-                    Context context = getApplicationContext();
-                    CharSequence text = "Probleme de connexion au serveur";
-                    int duration = Toast.LENGTH_LONG;
 
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
+                    CharSequence text = "Probleme de connexion au serveur";
+
+                    SuperToast superToast = new SuperToast(getApplicationContext());
+                    superToast.setDuration(SuperToast.Duration.LONG);
+                    superToast.setText(text);
+                    superToast.setBackground(R.color.color_error);
+                    superToast.show();
+                   /* Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();*/
                 } else {
                     UsernameTxt = (EditText) findViewById(R.id.UsernameField);
                     PasswordTxt = (EditText) findViewById(R.id.PasswordField);
                     //if (isValidEmail(UsernameTxt.getText().toString())) {
-                    pDialog.show();
-
+                  //  pDialog.show();
+                    lt.show();
                     try {
                         String LoginUrl = Constants.URL + "?login=true&u="
                                 + UsernameTxt.getText() + "&p="
@@ -99,7 +110,8 @@ public class LoginActivity extends ActionBarActivity {
                                     @Override
                                     public void onResponse(JSONObject response) {
                                         Log.d(TAG, response.toString());
-                                        pDialog.hide();
+                                        //pDialog.hide();
+
                                         // check for login response
                                         try {
                                             if (response
@@ -113,6 +125,7 @@ public class LoginActivity extends ActionBarActivity {
                                                     // in
                                                     // Store user details in
                                                     // SQLite Database
+                                                    lt.success();
                                                     DatabaseHandler db = new DatabaseHandler(
                                                             getApplicationContext());
                                                     JSONObject json_user = response
@@ -148,42 +161,33 @@ public class LoginActivity extends ActionBarActivity {
                                                     // Close Login Screen
                                                     finish();
                                                 } else {
+                                                    lt.error();
                                                     if (response
                                                             .getString(KEY_ERROR_MSG) != null) {
-                                                        Context context = getApplicationContext();
                                                         CharSequence text = response
                                                                 .getString(KEY_ERROR_MSG);
-                                                        int duration = Toast.LENGTH_LONG;
 
-                                                        Toast toast = Toast
-                                                                .makeText(
-                                                                        context,
-                                                                        text,
-                                                                        duration);
-                                                        toast.show();
+                                                        SuperToast superToast = new SuperToast(getApplicationContext());
+                                                        superToast.setDuration(SuperToast.Duration.LONG);
+                                                        superToast.setText(text);
+                                                        superToast.setBackground(R.color.color_error);
+                                                        superToast.show();
                                                     } else {
-                                                        Context context = getApplicationContext();
                                                         CharSequence text = "Probleme de connexion au serveur";
-                                                        int duration = Toast.LENGTH_LONG;
-
-                                                        Toast toast = Toast
-                                                                .makeText(
-                                                                        context,
-                                                                        text,
-                                                                        duration);
-                                                        toast.show();
+                                                        SuperToast superToast = new SuperToast(getApplicationContext());
+                                                        superToast.setDuration(SuperToast.Duration.LONG);
+                                                        superToast.setText(text);
+                                                        superToast.setBackground(R.color.color_error);
+                                                        superToast.show();
                                                     }
                                                 }
                                             } else {
-                                                Context context = getApplicationContext();
                                                 CharSequence text = "Probleme de connexion au serveur";
-                                                int duration = Toast.LENGTH_LONG;
-
-                                                Toast toast = Toast
-                                                        .makeText(context,
-                                                                text,
-                                                                duration);
-                                                toast.show();
+                                                SuperToast superToast = new SuperToast(getApplicationContext());
+                                                superToast.setDuration(SuperToast.Duration.LONG);
+                                                superToast.setText(text);
+                                                superToast.setBackground(R.color.color_error);
+                                                superToast.show();
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
@@ -194,7 +198,8 @@ public class LoginActivity extends ActionBarActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Log.d(TAG,"Error: "+ error.getMessage());
-                                pDialog.hide();
+                                //pDialog.hide();
+                                lt.error();
                             }
                         }) ;
                         // Adding request to request queue

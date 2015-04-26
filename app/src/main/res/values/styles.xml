@@ -16,6 +16,7 @@
     </style>
     <style name="Popupmenu" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
         <item name="android:windowBackground">@color/colorPrimary</item>
     </style>
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark">

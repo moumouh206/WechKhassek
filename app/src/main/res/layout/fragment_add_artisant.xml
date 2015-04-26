@@ -46,6 +46,7 @@
                 android:layout_alignLeft="@+id/explicationtxt"
                 android:layout_below="@+id/explicationtxt"
                 android:layout_marginTop="15dp"
+                android:textColor="@color/colorPrimary"
                 android:ems="10"
                 android:hint="@string/nom"
                 android:inputType="textPersonName" >
@@ -60,6 +61,7 @@
                 android:layout_alignLeft="@+id/prenom"
                 android:layout_below="@+id/prenom"
                 android:layout_marginTop="14dp"
+                android:textColor="@color/colorPrimary"
                 android:ems="10"
                 android:hint="@string/_213_000_000_000"
                 android:inputType="phone" />
@@ -145,6 +147,7 @@
                 android:layout_alignLeft="@+id/nom"
                 android:layout_below="@+id/nom"
                 android:layout_marginTop="14dp"
+                android:textColor="@color/colorPrimary"
                 android:ems="10"
                 android:hint="@string/prenom"
                 android:inputType="textPersonName" />

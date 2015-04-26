@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/logo"
-            android:src="@drawable/ic_logo1"
+            android:src="@drawable/ic_map"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -59,13 +59,13 @@
             style="@style/Material.Widget.FloatingActionButton.Light"
             android:id="@+id/fab_image"
             app:fab_backgroundColor="@color/colorAccent"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_iconSrc="@drawable/ic_account_multiple_plus_white_24dp"
+            app:fab_iconSrc="@drawable/ic_magnify_black_36dp"
+            app:fab_iconSize="36dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignRight="@+id/linearLayout2"
-            android:layout_alignEnd="@+id/linearLayout2" />
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
 </RelativeLayout>
