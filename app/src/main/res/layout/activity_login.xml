@@ -18,7 +18,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:contentDescription="@string/hello_world"
-            android:src="@drawable/ic_logo1" />
+            android:src="@drawable/ic_logo_with_text" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

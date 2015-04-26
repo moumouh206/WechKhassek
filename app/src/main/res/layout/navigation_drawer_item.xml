@@ -5,7 +5,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_logoair"
+        android:src="@drawable/ic_magnify_white_24dp"
         android:id="@+id/itemIcom"
         android:padding="8dp"
         android:layout_marginLeft="8dp"

@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -44,7 +43,6 @@ import com.mba2dna.wechkhassek.R;
 import com.mba2dna.wechkhassek.app.RequesteVolley;
 import com.mba2dna.wechkhassek.constants.Constants;
 import com.mba2dna.wechkhassek.service.GPSTracker;
-import com.mba2dna.wechkhassek.util.UserFunctions;
 import com.rey.material.widget.Button;
 
 import org.json.JSONArray;
@@ -289,7 +287,7 @@ public class AddArtisantFragment extends Fragment {
                                                         new AlertDialog.Builder(
                                                                 getActivity())
                                                                 .setIcon(
-                                                                        R.drawable.ic_launcher)
+                                                                        R.mipmap.ic_launcher)
                                                                 .setTitle(
                                                                         "Inscription réussi")
                                                                 .setMessage(
