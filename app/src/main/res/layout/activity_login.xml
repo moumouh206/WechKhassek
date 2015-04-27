@@ -86,13 +86,17 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/ou"
             android:gravity="center" />-->
-        <!--   <com.facebook.widget.LoginButton
+           <!--<com.facebook.widget.LoginButton
              android:id="@+id/authButton"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
              android:layout_below="@+id/btn_sign_in"
              android:layout_gravity="center_horizontal"
              android:layout_marginTop="5dp" />-->
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/Signup"
             android:layout_width="match_parent"

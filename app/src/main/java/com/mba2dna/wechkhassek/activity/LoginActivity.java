@@ -1,8 +1,11 @@
 package com.mba2dna.wechkhassek.activity;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -10,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +22,12 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.facebook.login.widget.LoginButton;
 import com.github.johnpersano.supertoasts.SuperToast;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.plus.Plus;
 import com.mba2dna.wechkhassek.R;
 import com.mba2dna.wechkhassek.app.RequesteVolley;
 import com.mba2dna.wechkhassek.constants.Constants;
@@ -32,8 +41,11 @@ import net.steamcrafted.loadtoast.LoadToast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.regex.Pattern;
 
-public class LoginActivity extends ActionBarActivity {
+
+public class LoginActivity extends ActionBarActivity  implements
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private static final String TAG = LoginActivity.class.getSimpleName();
     private Button LoginBtn;
     private EditText UsernameTxt, PasswordTxt;
@@ -48,19 +60,80 @@ public class LoginActivity extends ActionBarActivity {
     private static String KEY_NAME = "name";
     private static String KEY_EMAIL = "email";
     private static String KEY_CREATED_AT = "entry_date";
-
+private LoginButton loginButton;
    private LoadToast lt ;
+
+
+    /* Request code used to invoke sign in user interactions. */
+    private static final int RC_SIGN_IN = 0;
+
+    /* Client used to interact with Google APIs. */
+    private GoogleApiClient mGoogleApiClient;
+
+    /* A flag indicating that a PendingIntent is in progress and prevents
+     * us from starting further intents.
+     */
+    private boolean mIntentInProgress;
+    /**
+     * True if the sign-in button was clicked.  When true, we know to resolve all
+     * issues preventing sign-in without waiting.
+     */
+    private boolean mSignInClicked;
+
+    /**
+     * True if we are in the process of resolving a ConnectionResult
+     */
     // Tag used to cancel the request
     String tag_json_obj = "json_obj_req";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-       /* pDialog = new ProgressDialog(this);
-        pDialog.setMessage("Connexion en cours...");
-        pDialog.setCancelable(false);*/
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Plus.API)
+                .addScope(Plus.SCOPE_PLUS_LOGIN)
+                .build();
+        SignInButton gplusBtn = (SignInButton)findViewById(R.id.sign_in_button);
+                gplusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                    if (view.getId() == R.id.sign_in_button && !mGoogleApiClient.isConnecting()) {
+                        mSignInClicked = true;
+                        mGoogleApiClient.connect();
+                    }
+
+            }
+        });
+       /* loginButton = (LoginButton) findViewById(R.id.authButton);
+        loginButton.setReadPermissions("user_friends");
+        CallbackManager callbackManager =
+        // If using in a fragment
+       // loginButton.setFragment(this);
+        // Other app specific specialization
+
+        // Callback registration
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // App code
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+            }
+        });*/
         lt = new LoadToast(this);
         lt.setText("Connexion en cours...");
         lt.setTranslationY(200);
@@ -72,6 +145,14 @@ public class LoginActivity extends ActionBarActivity {
 
         UsernameTxt = (EditText) findViewById(R.id.UsernameField);
         UsernameTxt.setTypeface(tl);
+        Pattern emailPattern = Patterns.EMAIL_ADDRESS; // API level 8+
+        Account[] accounts = AccountManager.get(getApplicationContext()).getAccounts();
+        for (Account account : accounts) {
+            if (emailPattern.matcher(account.name).matches()) {
+                String possibleEmail = account.name;
+                UsernameTxt.setText(possibleEmail);
+            }
+        }
         PasswordTxt = (EditText) findViewById(R.id.PasswordField);
         PasswordTxt.setTypeface(tl);
         LoginBtn = (Button) findViewById(R.id.LoginBtn);
@@ -202,22 +283,7 @@ public class LoginActivity extends ActionBarActivity {
                                 lt.error();
                             }
                         }) ;
-                        // Adding request to request queue
-                      /*  RequestQueue mRequestQueue;
 
-// Instantiate the cache
-                        Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
-
-// Set up the network to use HttpURLConnection as the HTTP client.
-                        Network network = new BasicNetwork(new HurlStack());
-
-// Instantiate the RequestQueue with the cache and network.
-                        mRequestQueue = new RequestQueue(cache, network);
-
-// Start the queue
-                        mRequestQueue.start();
-                        mRequestQueue.add(jsonObjReq);*/
-                       // AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
                         RequesteVolley.getInstance(getApplicationContext()).addToRequestQueue(jsonObjReq);
                     } catch (Exception e) {
                         Log.d(TAG, "Error: " + e.getMessage());
@@ -269,4 +335,51 @@ public class LoginActivity extends ActionBarActivity {
         return activeNetworkInfo != null;
     }
 
+    @Override
+    public void onConnected(Bundle bundle) {
+        mSignInClicked = false;
+        Toast.makeText(this, "User is connected!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult result) {
+            if (mSignInClicked && result.hasResolution()) {
+                try {
+                    result.startResolutionForResult(this, RC_SIGN_IN);
+                    mIntentInProgress = true;
+                } catch (IntentSender.SendIntentException e) {
+                    mGoogleApiClient.connect();
+                }
+            }
+    }
+    protected void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
+    }
+
+    protected void onStop() {
+        super.onStop();
+
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
+    }
+  /*  protected void onActivityResult(int requestCode, int responseCode, Intent intent) {
+        if (requestCode == RC_SIGN_IN) {
+            if (responseCode != RESULT_OK) {
+                mSignInClicked = false;
+            }
+
+            mIntentInProgress = false;
+
+            if (!mGoogleApiClient.isConnected()) {
+                mGoogleApiClient.reconnect();
+            }
+        }
+    }*/
 }

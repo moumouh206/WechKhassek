@@ -1,21 +1,38 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'mba2dna'
+            keyPassword 'moumouh206'
+            storeFile file('C:/Users/MBA2DNA/Desktop/keysto.jks')
+            storePassword 'moumouh206'
+        }
+    }
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
-
+    repositories {
+        mavenCentral()
+    }
     defaultConfig {
         applicationId "com.mba2dna.wechkhassek"
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+    productFlavors {
     }
 }
 
@@ -33,7 +50,6 @@ dependencies {
     compile 'com.google.android.gms:play-services:7.0.0'
     compile 'net.steamcrafted:load-toast:1.0.4'
     compile 'com.github.johnpersano:supertoasts:1.3.4@aar'
-
-
-
+    compile 'com.facebook.android:facebook-android-sdk:4.0.0'
+    compile 'com.prolificinteractive:material-calendarview:0.3.1'
 }
