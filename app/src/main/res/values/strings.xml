@@ -3,17 +3,11 @@
 
 
     <string name="title_activity_tutorial">TutorialActivity</string>
-
-
     <string name="RechercheBtn">Rechercher un médecin proche de vous  </string>
-
     <string name="action_search">Search</string>
-
-
     <string name="nav_item_home">Home</string>
     <string name="nav_item_friends">Friends</string>
     <string name="nav_item_notifications">Messages</string>
-
     <string name="title_messages">Messages</string>
     <string name="title_friends">Friends</string>
     <string name="title_home">Home</string>
@@ -40,7 +34,7 @@
     <string name="title_activity_offre">OffreActivity</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="Bienvenue">Bienvenue Artisan et Utilisateur</string>
-    <string name="explication">Notre Application Dépanini est distiné au artisans qui cherche de l\'emploi ou au personne qui ont des besoin des artisans</string>
+    <string name="explication">Notre Application WechKhasse est distiné au artisans qui cherche de l\'emploi ou au personne qui ont des besoin des artisans</string>
     <string name="artisan_a_recherche_d_emploi">Artisant à la recherche d\'emploi</string>
     <string name="une_personne_cherche_un_artisan">Une personne cherche un artisan</string>
     <string name="vous_pouvez_filtrer_votre_recherche_ici">Vous pouvez filtrer votre recherche ici</string>
@@ -186,7 +180,7 @@
     <string name="title_annonce_detail">Annonce Detail</string>
     <string name="deconnectez_vous">Deconnectez-vous</string>
     <string name="search">Search</string>
-    <string name="Dipaninilabel">Dipanini Mobile ©</string>
+    <string name="Dipaninilabel">WechKhassek Mobile ©</string>
     <string name="ville">Ville</string>
     <string name="type_d_annonce">Type d\'annonce</string>
     <string name="marque_modele">Marque/Modèle</string>

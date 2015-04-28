@@ -81,12 +81,12 @@
             android:gravity="center"
             android:text="@string/ou"
             android:textSize="12sp" />
-        <!--<com.google.android.gms.common.SignInButton
+        <com.google.android.gms.common.SignInButton
             android:id="@+id/btn_sign_in"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ou"
-            android:gravity="center" />-->
+            android:gravity="center" />
            <!--<com.facebook.widget.LoginButton
              android:id="@+id/authButton"
              android:layout_width="fill_parent"
@@ -118,7 +118,7 @@
                 />
             <com.rey.material.widget.Button
                 style="@style/Material.Drawable.Ripple.Touch.MatchView"
-                android:id="@+id/buut2"
+                android:id="@+id/googlelogin"
                 android:layout_width="0dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"

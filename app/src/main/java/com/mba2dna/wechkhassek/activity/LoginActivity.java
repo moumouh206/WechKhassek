@@ -5,7 +5,6 @@ import android.accounts.AccountManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -16,21 +15,16 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.facebook.login.widget.LoginButton;
 import com.github.johnpersano.supertoasts.SuperToast;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.plus.Plus;
 import com.mba2dna.wechkhassek.R;
 import com.mba2dna.wechkhassek.app.RequesteVolley;
 import com.mba2dna.wechkhassek.constants.Constants;
+import com.mba2dna.wechkhassek.service.GooglePlusLoginUtils;
 import com.mba2dna.wechkhassek.util.DatabaseHandler;
 import com.mba2dna.wechkhassek.util.UserFunctions;
 import com.rey.material.widget.Button;
@@ -44,7 +38,7 @@ import org.json.JSONObject;
 import java.util.regex.Pattern;
 
 
-public class LoginActivity extends ActionBarActivity {
+public class LoginActivity extends ActionBarActivity implements GooglePlusLoginUtils.GPlusLoginStatus{
     private static final String TAG = LoginActivity.class.getSimpleName();
     private Button LoginBtn;
     private EditText UsernameTxt, PasswordTxt;
@@ -59,10 +53,11 @@ public class LoginActivity extends ActionBarActivity {
     private static String KEY_NAME = "name";
     private static String KEY_EMAIL = "email";
     private static String KEY_CREATED_AT = "entry_date";
-    private LoginButton loginButton;
+
     private LoadToast lt;
 
 
+    private GooglePlusLoginUtils gLogin;
     /* Request code used to invoke sign in user interactions. */
    // private static final int RC_SIGN_IN = 0;
 
@@ -91,6 +86,9 @@ public class LoginActivity extends ActionBarActivity {
         setContentView(R.layout.activity_login);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        gLogin = new GooglePlusLoginUtils(this, R.id.btn_sign_in);
+        gLogin.setLoginStatus(this);
+
        /* mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -331,6 +329,31 @@ public class LoginActivity extends ActionBarActivity {
         NetworkInfo activeNetworkInfo = connectivityManager
                 .getActiveNetworkInfo();
         return activeNetworkInfo != null;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        gLogin.connect();
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        gLogin.disconnect();
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int responseCode,
+                                    Intent intent) {
+        gLogin.onActivityResult(requestCode, responseCode, intent);
+
+    }
+
+    @Override
+    public void OnSuccessGPlusLogin(Bundle profile) {
+        Log.i(TAG,profile.getString(GooglePlusLoginUtils.NAME));
+        Log.i(TAG,profile.getString(GooglePlusLoginUtils.EMAIL));
+        Log.i(TAG,profile.getString(GooglePlusLoginUtils.PHOTO));
+        Log.i(TAG,profile.getString(GooglePlusLoginUtils.PROFILE));
     }
 /*
     @Override
