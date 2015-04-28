@@ -44,8 +44,7 @@ import org.json.JSONObject;
 import java.util.regex.Pattern;
 
 
-public class LoginActivity extends ActionBarActivity  implements
-        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class LoginActivity extends ActionBarActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
     private Button LoginBtn;
     private EditText UsernameTxt, PasswordTxt;
@@ -60,31 +59,31 @@ public class LoginActivity extends ActionBarActivity  implements
     private static String KEY_NAME = "name";
     private static String KEY_EMAIL = "email";
     private static String KEY_CREATED_AT = "entry_date";
-private LoginButton loginButton;
-   private LoadToast lt ;
+    private LoginButton loginButton;
+    private LoadToast lt;
 
 
     /* Request code used to invoke sign in user interactions. */
-    private static final int RC_SIGN_IN = 0;
+   // private static final int RC_SIGN_IN = 0;
 
     /* Client used to interact with Google APIs. */
-    private GoogleApiClient mGoogleApiClient;
+   // private GoogleApiClient mGoogleApiClient;
 
     /* A flag indicating that a PendingIntent is in progress and prevents
      * us from starting further intents.
      */
-    private boolean mIntentInProgress;
+   // private boolean mIntentInProgress;
     /**
      * True if the sign-in button was clicked.  When true, we know to resolve all
      * issues preventing sign-in without waiting.
      */
-    private boolean mSignInClicked;
+   // private boolean mSignInClicked;
 
     /**
      * True if we are in the process of resolving a ConnectionResult
      */
     // Tag used to cancel the request
-    String tag_json_obj = "json_obj_req";
+    //String tag_json_obj = "json_obj_req";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +91,7 @@ private LoginButton loginButton;
         setContentView(R.layout.activity_login);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
+       /* mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Plus.API)
@@ -109,7 +108,7 @@ private LoginButton loginButton;
                     }
 
             }
-        });
+        });*/
        /* loginButton = (LoginButton) findViewById(R.id.authButton);
         loginButton.setReadPermissions("user_friends");
         CallbackManager callbackManager =
@@ -177,7 +176,7 @@ private LoginButton loginButton;
                     UsernameTxt = (EditText) findViewById(R.id.UsernameField);
                     PasswordTxt = (EditText) findViewById(R.id.PasswordField);
                     //if (isValidEmail(UsernameTxt.getText().toString())) {
-                  //  pDialog.show();
+                    //  pDialog.show();
                     lt.show();
                     try {
                         String LoginUrl = Constants.URL + "?login=true&u="
@@ -185,7 +184,7 @@ private LoginButton loginButton;
                                 + PasswordTxt.getText();
                         Log.d(TAG, LoginUrl);
                         JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                                Request.Method.GET, LoginUrl,(String) null,
+                                Request.Method.GET, LoginUrl, (String) null,
                                 new Response.Listener<JSONObject>() {
 
                                     @Override
@@ -278,11 +277,11 @@ private LoginButton loginButton;
 
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Log.d(TAG,"Error: "+ error.getMessage());
+                                Log.d(TAG, "Error: " + error.getMessage());
                                 //pDialog.hide();
                                 lt.error();
                             }
-                        }) ;
+                        });
 
                         RequesteVolley.getInstance(getApplicationContext()).addToRequestQueue(jsonObjReq);
                     } catch (Exception e) {
@@ -291,7 +290,7 @@ private LoginButton loginButton;
                     }
 
 					/*}else{
-						Context context = getApplicationContext();
+                        Context context = getApplicationContext();
 						CharSequence text = "Votre email est invalide";
 						int duration = Toast.LENGTH_LONG;
 
@@ -320,9 +319,8 @@ private LoginButton loginButton;
 
             }
         });
-       // getSupportActionBar().setDisplayShowHomeEnabled(true);
+        // getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
-
 
 
     // Private class isNetworkAvailable
@@ -334,7 +332,7 @@ private LoginButton loginButton;
                 .getActiveNetworkInfo();
         return activeNetworkInfo != null;
     }
-
+/*
     @Override
     public void onConnected(Bundle bundle) {
         mSignInClicked = false;
@@ -368,7 +366,7 @@ private LoginButton loginButton;
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
-    }
+    }*/
   /*  protected void onActivityResult(int requestCode, int responseCode, Intent intent) {
         if (requestCode == RC_SIGN_IN) {
             if (responseCode != RESULT_OK) {
