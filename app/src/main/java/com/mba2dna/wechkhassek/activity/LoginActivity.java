@@ -38,7 +38,7 @@ import org.json.JSONObject;
 import java.util.regex.Pattern;
 
 
-public class LoginActivity extends ActionBarActivity implements GooglePlusLoginUtils.GPlusLoginStatus{
+public class LoginActivity extends ActionBarActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
     private Button LoginBtn;
     private EditText UsernameTxt, PasswordTxt;
@@ -86,8 +86,8 @@ public class LoginActivity extends ActionBarActivity implements GooglePlusLoginU
         setContentView(R.layout.activity_login);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        gLogin = new GooglePlusLoginUtils(this, R.id.btn_sign_in);
-        gLogin.setLoginStatus(this);
+       /* gLogin = new GooglePlusLoginUtils(this, R.id.btn_sign_in);
+        gLogin.setLoginStatus(this);*/
 
        /* mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -331,7 +331,7 @@ public class LoginActivity extends ActionBarActivity implements GooglePlusLoginU
         return activeNetworkInfo != null;
     }
 
-    @Override
+   /* @Override
     protected void onStart() {
         super.onStart();
         gLogin.connect();
@@ -354,7 +354,7 @@ public class LoginActivity extends ActionBarActivity implements GooglePlusLoginU
         Log.i(TAG,profile.getString(GooglePlusLoginUtils.EMAIL));
         Log.i(TAG,profile.getString(GooglePlusLoginUtils.PHOTO));
         Log.i(TAG,profile.getString(GooglePlusLoginUtils.PROFILE));
-    }
+    }*/
 /*
     @Override
     public void onConnected(Bundle bundle) {
