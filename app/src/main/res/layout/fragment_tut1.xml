@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Lorem ipsum dolor sit amet"
+        android:text="Besoin d'aide ?"
         android:id="@+id/Tl"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -30,7 +30,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+        android:text="Vous avez des travaux de réaménagement et vous êtes a la recherche d'un artisant proche de vous et vous n'avez pas trouvé ."
         android:id="@+id/Disc"
         android:padding="15dp"
         android:layout_below="@+id/Tl"

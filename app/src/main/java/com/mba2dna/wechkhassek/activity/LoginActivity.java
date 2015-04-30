@@ -243,7 +243,6 @@ public class LoginActivity extends ActionBarActivity {
                                                             .getString(KEY_ERROR_MSG) != null) {
                                                         CharSequence text = response
                                                                 .getString(KEY_ERROR_MSG);
-
                                                         SuperToast superToast = new SuperToast(getApplicationContext());
                                                         superToast.setDuration(SuperToast.Duration.LONG);
                                                         superToast.setText(text);

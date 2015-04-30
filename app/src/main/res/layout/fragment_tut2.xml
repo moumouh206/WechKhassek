@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Lorem ipsum dolor sit amet"
+        android:text="Et ben nous somme la !"
         android:id="@+id/Tl"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -30,7 +30,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+        android:text="Nous avons pensé à vous aider à vous faciliter la recherche !"
         android:id="@+id/Disc"
         android:padding="15dp"
         android:layout_below="@+id/Tl"

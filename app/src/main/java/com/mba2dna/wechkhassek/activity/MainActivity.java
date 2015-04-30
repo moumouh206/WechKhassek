@@ -19,7 +19,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.mba2dna.wechkhassek.fragment.CompanyFragment;
+import com.mba2dna.wechkhassek.fragment.FavorieFragment;
+import com.mba2dna.wechkhassek.fragment.RendezVousFragment;
 import com.mba2dna.wechkhassek.R;
 import com.mba2dna.wechkhassek.fragment.FragmentDrawer;
 import com.mba2dna.wechkhassek.fragment.HomeFragment;
@@ -99,7 +100,11 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 title = getString(R.string.title_messages);
                 break;
             case 3:
-                fragment = new CompanyFragment();
+                fragment = new FavorieFragment();
+                title = getString(R.string.title_messages);
+                break;
+            case 4:
+                fragment = new RendezVousFragment();
                 title = getString(R.string.title_messages);
                 break;
             case 5:

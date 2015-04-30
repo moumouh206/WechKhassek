@@ -3,9 +3,9 @@ package com.mba2dna.wechkhassek.model;
 /**
  * Created by MBA2DNA on 14/04/2015.
  */
-public class VolInfo {
+public class RenderVous {
     public String name;
-    public String company;
+    public String nom_prenom;
     public String times;
     public String distination;
     public String Etat;

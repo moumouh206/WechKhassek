@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.mba2dna.wechkhassek.R;
 import com.mba2dna.wechkhassek.constants.Constants;
-import com.mba2dna.wechkhassek.model.VolInfo;
+import com.mba2dna.wechkhassek.model.RenderVous;
 
 import java.util.List;
 
@@ -19,18 +19,18 @@ import java.util.List;
  * Created by MBA2DNA on 14/04/2015.
  */
 public class VolsAdapter extends RecyclerView.Adapter<VolsAdapter.VolsViewHolder>{
-    private List<VolInfo> Vollist;
+    private List<RenderVous> Vollist;
     private int lastPosition = -1;
-    public VolsAdapter(List<VolInfo> Vollist) {
+    public VolsAdapter(List<RenderVous> Vollist) {
         this.Vollist = Vollist;
     }
 
 
     @Override
     public void onBindViewHolder(VolsViewHolder volViewHolder, int i) {
-        VolInfo ci = Vollist.get(i);
+        RenderVous ci = Vollist.get(i);
         volViewHolder.vEtat.setText(ci.Etat);
-        volViewHolder.vCompany.setText(ci.company);
+        volViewHolder.vCompany.setText(ci.nom_prenom);
         volViewHolder.vTimes.setText(ci.times);
         volViewHolder.vDistination.setText(ci.distination);
         volViewHolder.vTitle.setText(ci.name );
@@ -80,14 +80,14 @@ public class VolsAdapter extends RecyclerView.Adapter<VolsAdapter.VolsViewHolder
             vEtat =  (TextView) v.findViewById(R.id.txtEtat);
             vEtat.setTypeface(tl);
             vEtat.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_compass_grey600_18dp, //left
+                    R.drawable.ic_wallet_travel_grey600_18dp, //left
                     0, //top
                     0, //right
                     0);
             vCompany = (TextView)  v.findViewById(R.id.txtCompany);
             vCompany.setTypeface(tl);
             vCompany.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_bank_grey600_18dp, //left
+                    R.drawable.ic_account_grey600_18dp, //left
                     0, //top
                     0, //right
                     0);
@@ -108,7 +108,7 @@ public class VolsAdapter extends RecyclerView.Adapter<VolsAdapter.VolsViewHolder
             vTitle = (TextView) v.findViewById(R.id.title);
             vTitle.setTypeface(tf);
             vTitle.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_airplane_white_18dp, //left
+                    R.drawable.ic_calendar_white_24dp, //left
                     0, //top
                     0, //right
                     0);

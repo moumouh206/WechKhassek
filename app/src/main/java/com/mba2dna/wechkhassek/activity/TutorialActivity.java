@@ -89,7 +89,7 @@ public class TutorialActivity extends FragmentActivity {
                     fragment = new tut3Fragment();
                     break;
                 case 3:
-                    fragment = new tut2Fragment();
+                    fragment = new tut4Fragment();
                     break;
 
             }
@@ -171,6 +171,28 @@ public class TutorialActivity extends FragmentActivity {
 
             View rootView = inflater.inflate(
                     R.layout.fragment_tut3, container, false);
+            Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
+                    Constants.NexaBold);
+            Typeface tl = Typeface.createFromAsset(getActivity().getAssets(),
+                    Constants.NexaLight);
+            Tl = (TextView) rootView.findViewById(R.id.Tl);
+            Tl.setTypeface(tf);
+            Disc = (TextView) rootView.findViewById(R.id.Disc);
+            Disc.setTypeface(tl);
+            return rootView;
+        }
+    }
+    public static class tut4Fragment extends Fragment {
+        TextView Tl, Disc;
+
+        @Override
+        public View onCreateView(LayoutInflater inflater,
+                                 ViewGroup container, Bundle savedInstanceState) {
+            // The last two arguments ensure LayoutParams are inflated
+            // properly.
+
+            View rootView = inflater.inflate(
+                    R.layout.fragment_tut4, container, false);
             Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
                     Constants.NexaBold);
             Typeface tl = Typeface.createFromAsset(getActivity().getAssets(),

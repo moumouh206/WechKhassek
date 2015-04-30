@@ -68,7 +68,6 @@ public class SignupActivity extends ActionBarActivity {
         Pass2Txt = (EditText) findViewById(R.id.passTxt2);
         Email = (EditText) findViewById(R.id.EmailTxt);
         lbl = (TextView) findViewById(R.id.Dinaninielabel);
-
         UserTxt.setTypeface(tl);
         PassTxt.setTypeface(tl);
         Pass2Txt.setTypeface(tl);

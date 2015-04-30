@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Voila votre solution !"
+        android:id="@+id/Tl"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="35dp"
+        android:textAlignment="inherit"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/ic_tut4"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="51dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="La recherche des artisans n'a jamais etais facile que ça"
+        android:id="@+id/Disc"
+        android:padding="15dp"
+        android:layout_below="@+id/Tl"
+        android:layout_alignLeft="@+id/Tl"
+        android:layout_alignStart="@+id/Tl"
+        android:layout_gravity="center_horizontal|top" />
+
+</RelativeLayout>
+
