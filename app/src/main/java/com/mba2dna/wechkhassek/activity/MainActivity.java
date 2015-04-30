@@ -19,8 +19,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.mba2dna.wechkhassek.CompanyFragment;
+import com.mba2dna.wechkhassek.fragment.CompanyFragment;
 import com.mba2dna.wechkhassek.R;
+import com.mba2dna.wechkhassek.fragment.FragmentDrawer;
+import com.mba2dna.wechkhassek.fragment.HomeFragment;
+import com.mba2dna.wechkhassek.fragment.RechercheArtisantFragment;
+import com.mba2dna.wechkhassek.fragment.TravailFragment;
 import com.mba2dna.wechkhassek.util.UserFunctions;
 import com.rey.material.app.Dialog;
 import com.rey.material.app.DialogFragment;

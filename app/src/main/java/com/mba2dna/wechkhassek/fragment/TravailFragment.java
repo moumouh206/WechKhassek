@@ -1,4 +1,4 @@
-package com.mba2dna.wechkhassek.activity;
+package com.mba2dna.wechkhassek.fragment;
 
 
 import android.app.ProgressDialog;
@@ -27,6 +27,8 @@ import com.mba2dna.wechkhassek.constants.Constants;
 import com.mba2dna.wechkhassek.model.Artisan;
 import com.mba2dna.wechkhassek.service.GPSTracker;
 
+import net.steamcrafted.loadtoast.LoadToast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,8 +53,7 @@ public class TravailFragment extends Fragment {
     private static final String TAG = "Message";
 
     // Movies json url
-
-    private ProgressDialog pDialog;
+    private LoadToast lt;
     private List<Artisan> ArtisanList = new ArrayList<Artisan>();
     private ListView listView;
     private CustomListAdapter adapter;
@@ -78,7 +79,10 @@ public class TravailFragment extends Fragment {
         SpecialiteTxt.setTypeface(tf);
         TextView Recherch2 = (TextView) root.findViewById(R.id.explicationtxt);
         Recherch2.setTypeface(tl);
-
+        lt = new LoadToast(getActivity());
+        lt.setText("Recherche en cours...");
+        lt.setTranslationY(450);
+        lt.setProgressColor(getResources().getColor(R.color.colorAccent));
         mySpinner = (Spinner) root.findViewById(R.id.sprinnerCom1);
         MyArrayAdapter ma = new MyArrayAdapter(getActivity());
         mySpinner.setAdapter(ma);
@@ -91,10 +95,7 @@ public class TravailFragment extends Fragment {
             public void onClick(View arg0) {
 
                 ArtisanList.clear();
-                pDialog = new ProgressDialog(getActivity());
-                // Showing progress dialog before making http request
-                pDialog.setMessage("Chargement...");
-                pDialog.show();
+                lt.show();
                 gps = new GPSTracker(getActivity());
                 if (gps.canGetLocation()) {
                     double latitude = gps.getLatitude();
@@ -113,7 +114,7 @@ public class TravailFragment extends Fragment {
                             @Override
                             public void onResponse(JSONObject response) {
                                 Log.d(TAG, response.toString());
-                                hidePDialog();
+                                lt.success();
                                 JSONArray Annonces;
                                 try {
                                     Annonces = response.getJSONArray("Offres");
@@ -137,26 +138,27 @@ public class TravailFragment extends Fragment {
                                             ArtisanList.add(artisan);
                                         } catch (JSONException e) {
                                             e.printStackTrace();
+                                            lt.error();
                                         }
 
                                     }
                                 } catch (JSONException e1) {
                                     // TODO Auto-generated catch block
                                     e1.printStackTrace();
-                                    hidePDialog();
+                                    lt.error();
                                 }
 
                                 // notifying list adapter about data changes
                                 // so that it renders the list view with updated
                                 // data
                                 adapter.notifyDataSetChanged();
-                                hidePDialog();
+                                lt.success();
                             }
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // log.d(TAG, "Error: " + error.getMessage());
-                        hidePDialog();
+                        lt.error();
 
                     }
                 });
@@ -172,18 +174,7 @@ public class TravailFragment extends Fragment {
         listView.setAdapter(adapter);
         return root;
     }
-    private void hidePDialog() {
-        if (pDialog != null) {
-            pDialog.dismiss();
-            pDialog = null;
-        }
-    }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        hidePDialog();
-    }
     private class MyArrayAdapter extends BaseAdapter {
 
         private LayoutInflater mInflater;

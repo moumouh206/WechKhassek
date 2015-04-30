@@ -1,4 +1,4 @@
-package com.mba2dna.wechkhassek.activity;
+package com.mba2dna.wechkhassek.fragment;
 
 
 import android.app.Activity;
@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.mba2dna.wechkhassek.R;
 import com.mba2dna.wechkhassek.constants.Constants;
-import com.rey.material.widget.Button;
 import com.rey.material.widget.FloatingActionButton;
 
 

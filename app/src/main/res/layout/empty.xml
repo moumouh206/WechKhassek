@@ -17,9 +17,10 @@
 		android:layout_height="wrap_content"
 		android:layout_marginTop="8dp"
 		android:layout_gravity="center_horizontal"
+        android:fontFamily="sans-serif-light"
 		android:gravity="center"
-		android:textSize="12sp"
-		android:textColor="#a6a4a4"
+		android:textSize="16sp"
+		android:textColor="@color/colorPrimary"
 		android:text="@string/la_liste_est_vide_" />
 
 </LinearLayout>

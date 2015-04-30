@@ -42,7 +42,6 @@ public class LoginActivity extends ActionBarActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
     private Button LoginBtn;
     private EditText UsernameTxt, PasswordTxt;
-    private ProgressDialog pDialog;
     private TextView SignUpBtn;
 
     private Toolbar mToolbar;

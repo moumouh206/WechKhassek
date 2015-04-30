@@ -1,4 +1,4 @@
-package com.mba2dna.wechkhassek.activity;
+package com.mba2dna.wechkhassek.fragment;
 
 
 import android.app.AlertDialog;

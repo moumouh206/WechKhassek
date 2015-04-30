@@ -1,4 +1,4 @@
-package com.mba2dna.wechkhassek.activity;
+package com.mba2dna.wechkhassek.fragment;
 
 
 import android.app.ProgressDialog;
@@ -30,6 +30,8 @@ import com.mba2dna.wechkhassek.model.Artisan;
 import com.mba2dna.wechkhassek.service.GPSTracker;
 import com.mba2dna.wechkhassek.util.DatabaseHandler;
 
+import net.steamcrafted.loadtoast.LoadToast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,7 +51,7 @@ public class RechercheArtisantFragment extends Fragment {
 
     // Movies json url
 
-    private ProgressDialog pDialog;
+    private LoadToast lt;
     private List<Artisan> ArtisanList = new ArrayList<Artisan>();
     private ListView listView;
     private CustomListAdapter adapter;
@@ -72,7 +74,10 @@ public class RechercheArtisantFragment extends Fragment {
         String fontLight = Constants.NexaLight;
 
         Specialites = getResources().getStringArray(R.array.specialiter_array);
-
+        lt = new LoadToast(getActivity());
+        lt.setText("Recherche en cours...");
+        lt.setTranslationY(300);
+        lt.setProgressColor(getResources().getColor(R.color.colorAccent));
         myFont = Typeface.createFromAsset(getActivity().getAssets(), fontLight);
         Button rechercBtn = (Button) Root.findViewById(R.id.recherchBtn1);
         rechercBtn.setTypeface(myFont);
@@ -81,10 +86,8 @@ public class RechercheArtisantFragment extends Fragment {
             @Override
             public void onClick(View arg0) {
                 ArtisanList.clear();
-                pDialog = new ProgressDialog(getActivity());
-                // Showing progress dialog before making http request
-                pDialog.setMessage("Chargement...");
-                pDialog.show();
+
+                lt.show();
                 gps = new GPSTracker(getActivity().getApplicationContext());
                 if (gps.canGetLocation()) {
                     double latitude = gps.getLatitude();
@@ -103,9 +106,9 @@ public class RechercheArtisantFragment extends Fragment {
                             @Override
                             public void onResponse(JSONObject response) {
                                 Log.d(TAG, response.toString());
-                                hidePDialog();
                                 JSONArray Annonces;
                                 try {
+                                    lt.success();
                                     Annonces = response
                                             .getJSONArray("Artisans");
                                     // Parsing json
@@ -132,27 +135,27 @@ public class RechercheArtisantFragment extends Fragment {
                                                     .getString("calls"));
                                             ArtisanList.add(artisan);
                                         } catch (JSONException e) {
-                                            e.printStackTrace();
+                                            lt.error();
                                         }
 
                                     }
                                 } catch (JSONException e1) {
                                     // TODO Auto-generated catch block
                                     e1.printStackTrace();
-                                    hidePDialog();
+                                    lt.error();
                                 }
 
                                 // notifying list adapter about data changes
                                 // so that it renders the list view with updated
                                 // data
                                 adapter.notifyDataSetChanged();
-                                hidePDialog();
+                                lt.success();
                             }
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // log.d(TAG, "Error: " + error.getMessage());
-                        hidePDialog();
+                        lt.error();
 
                     }
                 });
@@ -244,18 +247,7 @@ public class RechercheArtisantFragment extends Fragment {
 
     }
 
-    private void hidePDialog() {
-        if (pDialog != null) {
-            pDialog.dismiss();
-            pDialog = null;
-        }
-    }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        hidePDialog();
-    }
     private class MyArrayAdapter extends BaseAdapter {
 
         private LayoutInflater mInflater;

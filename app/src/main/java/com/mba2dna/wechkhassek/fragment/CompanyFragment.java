@@ -1,4 +1,4 @@
-package com.mba2dna.wechkhassek;
+package com.mba2dna.wechkhassek.fragment;
 
 
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mba2dna.wechkhassek.R;
 import com.mba2dna.wechkhassek.adapter.VolsAdapter;
 import com.mba2dna.wechkhassek.constants.Constants;
 import com.mba2dna.wechkhassek.model.VolInfo;
