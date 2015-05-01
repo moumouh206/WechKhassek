@@ -2,7 +2,6 @@ package com.mba2dna.wechkhassek.fragment;
 
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
@@ -467,7 +466,7 @@ public class AddArtisantFragment extends Fragment {
                                         @Override
                                         public void onResponse(JSONObject response) {
                                             Log.d("google", response.toString());
-                                            hidePDialog();
+                                            lt1.success();
                                            l.setVisibility(View.GONE);
                                             try {
                                                 adrTxt.setText(response
@@ -477,7 +476,7 @@ public class AddArtisantFragment extends Fragment {
                                             } catch (JSONException e1) {
                                                 // TODO Auto-generated catch block
                                                 e1.printStackTrace();
-                                                hidePDialog();
+                                                lt1.error();
                                                 l.setVisibility(View.GONE);
                                             }
 
@@ -486,7 +485,7 @@ public class AddArtisantFragment extends Fragment {
                                             // so that it renders the list view with
                                             // updated
                                             // data
-                                            hidePDialog();
+                                            lt1.success();
                                             l.setVisibility(View.GONE);
                                         }
                                     }, new Response.ErrorListener() {
@@ -495,7 +494,7 @@ public class AddArtisantFragment extends Fragment {
                                         VolleyError error) {
                                     // log.d(TAG, "Error: " +
                                     // error.getMessage());
-                                    hidePDialog();
+                                    lt1.error();
 
                                 }
                             });
@@ -519,11 +518,10 @@ public class AddArtisantFragment extends Fragment {
 					 * Marker hamburg = map.addMarker(new MarkerOptions()
 					 * .position(new LatLng(lt, lg)).title( "Vous ete ici"));
 					 */
-                        pDialog = new ProgressDialog(getActivity());
-                        pDialog.setMessage("Collection d'information...");
 
-                        pDialog.setCancelable(false);
-                        pDialog.show();
+
+                        lt1.setText("Collection d'information...");
+                        lt1.show();
                         String lien = Constants.URL + "?getAddress=true&l=" + lt
                                 + "&g=" + lg;
                         JsonObjectRequest movieReq = new JsonObjectRequest(
@@ -532,7 +530,7 @@ public class AddArtisantFragment extends Fragment {
                                     @Override
                                     public void onResponse(JSONObject response) {
                                         Log.d("google", response.toString());
-                                        hidePDialog();
+                                        lt1.success();
                                         try {
                                             adrTxt.setText(response
                                                     .getString("adress"));
@@ -541,21 +539,21 @@ public class AddArtisantFragment extends Fragment {
                                         } catch (JSONException e1) {
                                             // TODO Auto-generated catch block
                                             e1.printStackTrace();
-                                            hidePDialog();
+                                            lt1.error();
                                         }
 
                                         // notifying list adapter about data changes
                                         // so that it renders the list view with
                                         // updated
                                         // data
-                                        hidePDialog();
+                                        lt1.success();
                                     }
                                 }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 // log.d(TAG, "Error: " +
                                 // error.getMessage());
-                                hidePDialog();
+                                lt1.success();
 
                             }
                         });
@@ -588,12 +586,7 @@ public class AddArtisantFragment extends Fragment {
 
         return root;
     }
-    private void hidePDialog() {
-        if (pDialog != null) {
-            pDialog.dismiss();
-            pDialog = null;
-        }
-    }
+
     @Override
     public void onResume() {
         mapView.onResume();
