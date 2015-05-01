@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.mba2dna.wechkhassek.R;
@@ -14,21 +15,22 @@ import com.mba2dna.wechkhassek.constants.Constants;
 import com.mba2dna.wechkhassek.model.RenderVous;
 
 import java.util.List;
+import java.util.Random;
 
 /**
- * Created by MBA2DNA on 14/04/2015.
+ * Created by MBA2DNA on 30/04/2015.
  */
-public class VolsAdapter extends RecyclerView.Adapter<VolsAdapter.VolsViewHolder>{
-    private List<RenderVous> Vollist;
+public class FavorieAdapter extends RecyclerView.Adapter<FavorieAdapter.FavorieViewHolder>{
+    private List<RenderVous> favorieList;
     private int lastPosition = -1;
-    public VolsAdapter(List<RenderVous> Vollist) {
-        this.Vollist = Vollist;
+    public FavorieAdapter(List<RenderVous> favorieList) {
+        this.favorieList = favorieList;
     }
 
 
     @Override
-    public void onBindViewHolder(VolsViewHolder volViewHolder, int i) {
-        RenderVous ci = Vollist.get(i);
+    public void onBindViewHolder(FavorieViewHolder volViewHolder, int i) {
+        RenderVous ci = favorieList.get(i);
         volViewHolder.vEtat.setText(ci.Etat);
         volViewHolder.vCompany.setText(ci.nom_prenom);
         volViewHolder.vTimes.setText(ci.times);
@@ -48,28 +50,29 @@ public class VolsAdapter extends RecyclerView.Adapter<VolsAdapter.VolsViewHolder
     }
     @Override
     public int getItemCount() {
-        return Vollist.size();
+        return favorieList.size();
     }
 
 
     @Override
-    public VolsViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public FavorieViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
-                inflate(R.layout.vol_layout, viewGroup, false);
+                inflate(R.layout.favorite_artisant_layout, viewGroup, false);
 
-        return new VolsViewHolder(itemView);
+        return new FavorieViewHolder(itemView);
     }
 
-    public static class VolsViewHolder extends RecyclerView.ViewHolder {
+    public static class FavorieViewHolder extends RecyclerView.ViewHolder {
 
         protected TextView vEtat;
         protected TextView vCompany;
         protected TextView vTimes;
         protected TextView vDistination;
         protected TextView vTitle;
+        protected RatingBar ratingBar;
 
-        public VolsViewHolder(View v) {
+        public FavorieViewHolder(View v) {
             super(v);
 
             Typeface tf = Typeface.createFromAsset(
@@ -77,41 +80,21 @@ public class VolsAdapter extends RecyclerView.Adapter<VolsAdapter.VolsViewHolder
                     Constants.NexaLight);
             Typeface tl = Typeface.createFromAsset(v.getContext().getAssets(),
                     Constants.NexaBold);
-            vEtat =  (TextView) v.findViewById(R.id.txtEtat);
+            vEtat =  (TextView) v.findViewById(R.id.title);
             vEtat.setTypeface(tl);
-            vEtat.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_wallet_travel_grey600_18dp, //left
-                    0, //top
-                    0, //right
-                    0);
-            vCompany = (TextView)  v.findViewById(R.id.txtCompany);
+            vCompany = (TextView)  v.findViewById(R.id.rating);
             vCompany.setTypeface(tl);
-            vCompany.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_account_grey600_18dp, //left
-                    0, //top
-                    0, //right
-                    0);
-            vTimes = (TextView)  v.findViewById(R.id.txtTimes);
+            vTimes = (TextView)  v.findViewById(R.id.genre);
             vTimes.setTypeface(tl);
-            vTimes.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_alarm_grey600_18dp, //left
-                    0, //top
-                    0, //right
-                    0);
-            vDistination = (TextView)  v.findViewById(R.id.txtDistination);
+            vDistination = (TextView)  v.findViewById(R.id.releaseYear);
             vDistination.setTypeface(tl);
-            vDistination.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_map_marker_circle_grey600_18dp, //left
-                    0, //top
-                    0, //right
-                    0);
-            vTitle = (TextView) v.findViewById(R.id.title);
+            vTitle = (TextView) v.findViewById(R.id.Calltxt);
             vTitle.setTypeface(tf);
-            vTitle.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_calendar_white_24dp, //left
-                    0, //top
-                    0, //right
-                    0);
+            ratingBar = (RatingBar) v.findViewById(R.id.ratingBar);
+            Random r = new Random();
+            int i1 = r.nextInt(5 - 1);
+            ratingBar.setRating(i1);
         }
     }
 }
+

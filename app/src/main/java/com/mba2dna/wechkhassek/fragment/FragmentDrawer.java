@@ -23,9 +23,11 @@ import com.mba2dna.wechkhassek.R;
 import com.mba2dna.wechkhassek.adapter.NavigationDrawerAdapter;
 import com.mba2dna.wechkhassek.constants.Constants;
 import com.mba2dna.wechkhassek.model.NavDrawerItem;
+import com.mba2dna.wechkhassek.util.DatabaseHandler;
 import com.rey.material.widget.Button;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -82,11 +84,16 @@ public class FragmentDrawer extends Fragment {
         Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
                 Constants.NexaBold);
 
+        DatabaseHandler db = new DatabaseHandler(getActivity().getApplicationContext());
+        HashMap<String,String> user = new HashMap<String,String>();
+        user = db.getUserDetails();
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         name = (TextView) layout.findViewById(R.id.name);
         name.setTypeface(tf);
+        name.setText(user.get("name"));
         email = (TextView) layout.findViewById(R.id.email);
         email.setTypeface(tl);
+        email.setText(user.get("email"));
 
         addArtisant =(Button) layout.findViewById(R.id.addArtisant);
         addArtisant.setTypeface(tf);

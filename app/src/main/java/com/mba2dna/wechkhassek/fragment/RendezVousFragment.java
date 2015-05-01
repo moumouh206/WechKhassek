@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 
 import com.mba2dna.wechkhassek.R;
-import com.mba2dna.wechkhassek.adapter.VolsAdapter;
+import com.mba2dna.wechkhassek.adapter.RendezVousAdapter;
 import com.mba2dna.wechkhassek.constants.Constants;
 import com.mba2dna.wechkhassek.model.RenderVous;
 import com.rey.material.app.DatePickerDialog;
@@ -55,7 +55,7 @@ public class RendezVousFragment extends Fragment {
                         String date = dialog.getFormattedDate(SimpleDateFormat.getDateInstance());
                         textV.setText(date);
                         super.onPositiveActionClicked(fragment);
-                        VolsAdapter ca = new VolsAdapter(createList(12,date));
+                        RendezVousAdapter ca = new RendezVousAdapter(createList(12,date));
                         recList.setAdapter(ca);
                     }
 
@@ -79,7 +79,7 @@ public class RendezVousFragment extends Fragment {
         recList.setLayoutManager(llm);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String currentDateandTime = sdf.format(new Date());
-        VolsAdapter ca = new VolsAdapter(createList(12,currentDateandTime));
+        RendezVousAdapter ca = new RendezVousAdapter(createList(12,currentDateandTime));
         textV.setText(currentDateandTime);
         recList.setAdapter(ca);
         return root;

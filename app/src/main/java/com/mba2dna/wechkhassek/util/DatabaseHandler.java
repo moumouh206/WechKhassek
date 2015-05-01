@@ -146,7 +146,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
-        // return user
         return user;
     }
    // getAllArtisans()

@@ -31,6 +31,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.github.johnpersano.supertoasts.SuperToast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdate;
@@ -44,6 +45,8 @@ import com.mba2dna.wechkhassek.app.RequesteVolley;
 import com.mba2dna.wechkhassek.constants.Constants;
 import com.mba2dna.wechkhassek.service.GPSTracker;
 import com.rey.material.widget.Button;
+
+import net.steamcrafted.loadtoast.LoadToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -60,8 +63,7 @@ public class AddArtisantFragment extends Fragment {
     Double lt, lg;
     private String[] Specialites, willaya;
     private Spinner mySpinner, willayaSpinner;
-    private Typeface myFont;
-    private ProgressDialog pDialog;
+    private LoadToast lt1;
     private MultiAutoCompleteTextView adrTxt;
     MapView mapView;
     GoogleMap map;
@@ -92,9 +94,10 @@ public class AddArtisantFragment extends Fragment {
         View root =inflater.inflate(R.layout.fragment_add_artisant, container, false);
         Specialites = getResources().getStringArray(R.array.specialiter_array);
         willaya = getResources().getStringArray(R.array.willaya_array);
-        pDialog = new ProgressDialog(getActivity());
-        pDialog.setMessage("Enregistrement en cours...");
-        pDialog.setCancelable(false);
+        lt1 = new LoadToast(getActivity());
+        lt1.setText("Enregistrement en cours...");
+        lt1.setTranslationY(300);
+        lt1.setProgressColor(getResources().getColor(R.color.colorAccent));
         String fontBold = Constants.NexaBold;
         String fontLight =  Constants.NexaLight;
          tf = Typeface.createFromAsset(getActivity().getAssets(), fontBold);
@@ -163,21 +166,21 @@ public class AddArtisantFragment extends Fragment {
                                 } catch (JSONException e1) {
                                     // TODO Auto-generated catch block
                                     e1.printStackTrace();
-                                    hidePDialog();
+
                                     l.setVisibility(View.GONE);
                                 }
 
                                 // notifying list adapter about data changes
                                 // so that it renders the list view with updated
                                 // data
-                                hidePDialog();
+
                                 l.setVisibility(View.GONE);
                             }
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // log.d(TAG, "Error: " + error.getMessage());
-                        hidePDialog();
+
 
                     }
                 });
@@ -243,6 +246,7 @@ public class AddArtisantFragment extends Fragment {
 
                         pDialog.setCancelable(false);
                         pDialog.show();*/
+                        lt1.show();
                         try {
                             String LoginUrl = Constants.URL
                                     + "?addArtisan=true&n="
@@ -272,6 +276,7 @@ public class AddArtisantFragment extends Fragment {
                                                     String res = response
                                                             .getString(KEY_SUCCESS);
                                                     if (Integer.parseInt(res) == 1) {
+                                                        lt1.success();
                                                         uid = response
                                                                 .getString("uid");
                                                         // Toast.makeText(getApplicationContext(),"La uid :"+
@@ -354,59 +359,49 @@ public class AddArtisantFragment extends Fragment {
                                                     } else {
                                                         if (response
                                                                 .getString(KEY_ERROR_MSG) != null) {
-                                                            Context context = getActivity(). getApplicationContext();
                                                             CharSequence text = response
                                                                     .getString(KEY_ERROR_MSG);
-                                                            int duration = Toast.LENGTH_LONG;
-
-                                                            Toast toast = Toast
-                                                                    .makeText(
-                                                                            context,
-                                                                            text,
-                                                                            duration);
-                                                            toast.show();
+                                                            SuperToast superToast = new SuperToast(getActivity().getApplicationContext());
+                                                            superToast.setDuration(SuperToast.Duration.LONG);
+                                                            superToast.setText(text);
+                                                            superToast.setBackground(R.color.color_error);
+                                                            superToast.show();
                                                         } else {
                                                             Context context = getActivity(). getApplicationContext();
                                                             CharSequence text = "Probleme de connexion au serveur";
-                                                            int duration = Toast.LENGTH_LONG;
-
-                                                            Toast toast = Toast
-                                                                    .makeText(
-                                                                            context,
-                                                                            text,
-                                                                            duration);
-                                                            toast.show();
+                                                            SuperToast superToast = new SuperToast(getActivity().getApplicationContext());
+                                                            superToast.setDuration(SuperToast.Duration.LONG);
+                                                            superToast.setText(text);
+                                                            superToast.setBackground(R.color.color_error);
+                                                            superToast.show();
                                                         }
                                                     }
                                                 } else {
                                                     if (response
                                                             .getString(KEY_ERROR_MSG) != null) {
-                                                        Context context = getActivity(). getApplicationContext();
+
+
                                                         CharSequence text = response
                                                                 .getString(KEY_ERROR_MSG);
-                                                        int duration = Toast.LENGTH_LONG;
-
-                                                        Toast toast = Toast
-                                                                .makeText(
-                                                                        context,
-                                                                        text,
-                                                                        duration);
-                                                        toast.show();
+                                                        SuperToast superToast = new SuperToast(getActivity().getApplicationContext());
+                                                        superToast.setDuration(SuperToast.Duration.LONG);
+                                                        superToast.setText(text);
+                                                        superToast.setBackground(R.color.color_error);
+                                                        superToast.show();
                                                     } else {
                                                         Context context = getActivity(). getApplicationContext();
                                                         CharSequence text = "Probleme de connexion au serveur";
-                                                        int duration = Toast.LENGTH_LONG;
 
-                                                        Toast toast = Toast
-                                                                .makeText(
-                                                                        context,
-                                                                        text,
-                                                                        duration);
-                                                        toast.show();
+                                                        SuperToast superToast = new SuperToast(getActivity().getApplicationContext());
+                                                        superToast.setDuration(SuperToast.Duration.LONG);
+                                                        superToast.setText(text);
+                                                        superToast.setBackground(R.color.color_error);
+                                                        superToast.show();
                                                     }
                                                 }
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
+                                                lt1.error();
                                             }
                                         }
                                     }, new Response.ErrorListener() {
@@ -416,16 +411,17 @@ public class AddArtisantFragment extends Fragment {
                                         VolleyError error) {
                                     Log.d("Inscription", "Error: "
                                             + error.getMessage());
-                                  //  pDialog.hide();
+                                    lt1.error();
                                 }
                             }) {
 
                             };
                             // Adding request to request queue
+                            lt1.success();
                             RequesteVolley.getInstance(getActivity().getApplicationContext()).addToRequestQueue(jsonObjReq);
                         } catch (Exception e) {
                             Log.d("Inscription", "Error: " + e.getMessage());
-
+                            lt1.error();
                         }
 
                     }
@@ -452,11 +448,11 @@ public class AddArtisantFragment extends Fragment {
 
                         @Override
                         public void onMapClick(LatLng coordinate) {
-                            pDialog = new ProgressDialog(getActivity());
+                            /*pDialog = new ProgressDialog(getActivity());
                             pDialog.setMessage("Recherche d'addresse...");
 
                             pDialog.setCancelable(false);
-                            pDialog.show();
+                            pDialog.show();*/
                             lt = coordinate.latitude;
                             lg = coordinate.longitude;
                             String lien = Constants.URL + "?getAddress=true&l="

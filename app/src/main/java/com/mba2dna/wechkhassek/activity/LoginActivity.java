@@ -2,7 +2,6 @@ package com.mba2dna.wechkhassek.activity;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
