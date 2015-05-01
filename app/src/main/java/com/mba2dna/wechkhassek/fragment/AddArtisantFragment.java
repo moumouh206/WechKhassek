@@ -233,11 +233,12 @@ public class AddArtisantFragment extends Fragment {
                     // lg = gps.getLongitude();
                     if (!isNetworkAvailable()) {
                         // Create an Alert Dialog
-                        Context context = getActivity(). getApplicationContext();
                         CharSequence text = "Probleme de connexion au serveur";
-                        int duration = Toast.LENGTH_LONG;
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
+                        SuperToast superToast = new SuperToast(getActivity());
+                        superToast.setDuration(SuperToast.Duration.LONG);
+                        superToast.setText(text);
+                        superToast.setBackground(R.color.color_error);
+                        superToast.show();
                     } else {
 
                        /* pDialog = new ProgressDialog(getActivity(). getApplicationContext());
@@ -245,6 +246,7 @@ public class AddArtisantFragment extends Fragment {
 
                         pDialog.setCancelable(false);
                         pDialog.show();*/
+                        lt1.setText("Enregistrement en cours...");
                         lt1.show();
                         try {
                             String LoginUrl = Constants.URL
@@ -275,6 +277,7 @@ public class AddArtisantFragment extends Fragment {
                                                     String res = response
                                                             .getString(KEY_SUCCESS);
                                                     if (Integer.parseInt(res) == 1) {
+
                                                         lt1.success();
                                                         uid = response
                                                                 .getString("uid");
@@ -319,37 +322,7 @@ public class AddArtisantFragment extends Fragment {
                                                                             public void onClick(
                                                                                     DialogInterface dialog,
                                                                                     int which) {
-                                                                              /*  new AlertDialog.Builder(
-                                                                                        getActivity())
-                                                                                        .setIcon(
-                                                                                                R.drawable.ic_launcher)
-                                                                                        .setTitle(
-                                                                                                "Fermer la Session")
-                                                                                        .setMessage(
-                                                                                                "Etes vous sure de vouloir fermer la session?")
-                                                                                        .setPositiveButton(
-                                                                                                "Oui",
-                                                                                                new DialogInterface.OnClickListener() {
-                                                                                                    @Override
-                                                                                                    public void onClick(
-                                                                                                            DialogInterface dialog,
-                                                                                                            int which) {
-                                                                                                        UserFunctions userFunction = new UserFunctions();
-                                                                                                        userFunction
-                                                                                                                .logoutUser(getActivity(). getApplicationContext());
-                                                                                                        Intent login = new Intent(
-                                                                                                                getActivity(). getApplicationContext(),
-                                                                                                                LoginActivity.class);
-                                                                                                        login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                                                                        startActivity(login);
-                                                                                                       // finish();
-                                                                                                    }
 
-                                                                                                })
-                                                                                        .setNegativeButton(
-                                                                                                "Non",
-                                                                                                null)
-                                                                                        .show();*/
                                                                             }
 
                                                                         })
@@ -378,7 +351,7 @@ public class AddArtisantFragment extends Fragment {
                                                 } else {
                                                     if (response
                                                             .getString(KEY_ERROR_MSG) != null) {
-
+                                                        lt1.error();
 
                                                         CharSequence text = response
                                                                 .getString(KEY_ERROR_MSG);
