@@ -11,15 +11,19 @@
         layout="@layout/toolbar" />
     <!-- LOGO -->
 
-    <ImageView
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/dirlogo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="102dp"
+        android:layout_height="102dp"
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/LogoDisct"
-        android:src="@drawable/ic_logo_with_text" />
+        android:src="@drawable/ic_dslr_camera_icon"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="18dp"
+        app:border_width="2dp"
+        app:border_color="@color/colorAccent"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -15,7 +15,8 @@ public class Constants  {
     public static String  GothamLight = "fonts/GothamLight.ttf";
     public static final String URL = "http://depanini.16mb.com/mobile/json.php";//"http://mobile.dirannonce.com/json.php";
     public static String API_KEY ="AIzaSyC3iuEk7YBh6FYU_2NDP3EWA6I1UdqtCBA";
-
+    public static final String FILE_UPLOAD_URL = "http://depanini.16mb.com/mobile/fileUpload.php";
+    public static final String IMAGE_DIRECTORY_NAME = "Android File Upload";
 
 public static String RandomDateTime(){
     SimpleDateFormat dfDateTime  = new SimpleDateFormat("hh:mm", Locale.getDefault());
